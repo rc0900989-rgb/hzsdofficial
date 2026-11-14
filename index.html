@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hertz Sync Sound Design — Offline Neural Audio Asset Manager</title>
+  <meta name="description" content="Hertz Sync Sound Design is a 100% offline, lightning-fast DAW asset manager. Automatically tag, categorize, slice, and reshape tens of thousands of sound effects with zero cloud dependency.">
+  <meta name="theme-color" content="#07070a">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <!-- ============ SVG ICON SPRITE ============ -->
+  <svg class="sprite" aria-hidden="true" width="0" height="0" style="position:absolute">
+    <defs>
+      <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 12h2.2l2-6.5 3.1 13L12.6 4l3 16 2.2-8H22"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M7 10.5 12 15l5-4.5"/><path d="M4 20h16"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></symbol>
+      <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 4.8-3.4 8-8 9.3C7.4 20 4 16.8 4 12V6z"/><path d="m8.8 12.2 2.2 2.2 4.2-4.4"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14"/><path d="M15 5v14"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m20 6.5-11 11L4 12"/></symbol>
+      <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.3 12.1 2.5 2.5 4.9-5.1"/></symbol>
+      <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M18.5 15.5 19 17l1.5.5-1.5.5-.5 1.5-.5-1.5L16.5 17l1.5-.5z"/></symbol>
+      <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6.5" r="2.6"/><circle cx="6" cy="17.5" r="2.6"/><path d="M8.2 8.2 20 19"/><path d="M8.2 15.8 20 5"/></symbol>
+      <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9"/><path d="M17 7h3"/><path d="M4 17h3"/><path d="M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+      <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13.5 2 5 13.2h5.4L9.8 22 18.5 10.6h-5.4z"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 6.5V5.8A1.8 1.8 0 0 0 13.2 4H5.8A1.8 1.8 0 0 0 4 5.8v7.4A1.8 1.8 0 0 0 5.8 15h.7"/></symbol>
+      <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V6.2l10-2v11.6"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="15.8" r="2.5"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7.2A2.2 2.2 0 0 1 5.2 5h3.4l2 2.2h8.2A2.2 2.2 0 0 1 21 9.4v7.4a2.2 2.2 0 0 1-2.2 2.2H5.2A2.2 2.2 0 0 1 3 16.8z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.6"/><path d="m16 16 4 4"/></symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><rect x="10" y="10" width="4" height="4" rx=".8"/><path d="M10 3v2M14 3v2M10 19v2M14 19v2M3 10h2M3 14h2M19 10h2M19 14h2"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><path d="M12 14.5v2"/></symbol>
+      <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2.2"/><path d="M9 20h6M12 16.5V20"/></symbol>
+      <symbol id="i-activity" viewBox="0 0 24 24"><path d="M3 12h3.4l2.4-7 4 14 2.8-9 2 2H21"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 4.8-9 4.8-9-4.8z"/><path d="m3 12.4 9 4.8 9-4.8"/><path d="m3 16.9 9 4.8 9-4.8"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.3l3.4 2"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9L6.7 20l1.1-6L3.4 9.8l6-.8z"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.2"/><path d="m3.6 6.6 7.3 5.6a2 2 0 0 0 2.2 0l7.3-5.6"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 7h17M3.5 12h17M3.5 17h17"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+      <symbol id="i-disc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.4"/></symbol>
+      <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16l-6.2 7.4V19l-3.6 1.6v-7.2z"/></symbol>
+      <symbol id="i-windows" viewBox="0 0 24 24"><path d="M4 6.5 10.5 5.6v6.1H4z"/><path d="M12 5.3 20 4v7.7h-8z"/><path d="M4 12.9h6.5v6.1L4 18z"/><path d="M12 12.9h8V21l-8-1.3z"/></symbol>
+      <symbol id="i-waveform" viewBox="0 0 24 24"><path d="M3 10v4M6.5 7v10M10 4v16M13.5 8v8M17 5v14M20.5 10v4"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="page-grain" aria-hidden="true"></div>
+  <div class="page-glow" aria-hidden="true"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Hertz Sync home">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" class="icon"><use href="#i-waveform"/></svg>
+        </span>
+        <span class="brand-type">
+          <strong>Hertz Sync</strong>
+          <small>Sound Design</small>
+        </span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#engine">AI Engine</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#interface">Interface</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#engine" class="offline-chip">
+          <svg class="icon"><use href="#i-shield"/></svg>
+          100% Offline
+        </a>
+        <a href="#pricing" class="btn btn-primary btn-sm">
+          <svg class="icon"><use href="#i-download"/></svg>
+          Get Pro — $59.90
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg class="icon nav-toggle-open"><use href="#i-menu"/></svg>
+          <svg class="icon nav-toggle-close"><use href="#i-close"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <nav aria-label="Mobile">
+        <a href="#features">Features</a>
+        <a href="#engine">AI Engine</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#interface">Interface</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <a href="#pricing" class="btn btn-primary btn-block">Download for macOS &amp; Windows</a>
+      <p class="mobile-nav-note">v1.1 · 14-day free trial · No account required</p>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          <a class="pill pill-amber" href="#engine">
+            <span class="pulse-dot"></span>
+            UCS AI Engine v2.0 — now shipping
+            <svg class="icon"><use href="#i-arrow-right"/></svg>
+          </a>
+
+          <h1>
+            Master your sample library<br class="br-desktop">
+            with <span class="text-gradient">offline neural AI.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Hertz Sync Sound Design is a 100% offline, lightning-fast DAW asset manager.
+            Automatically tag, categorize, slice, and reshape tens of thousands of sound
+            effects — with zero cloud dependency.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#pricing" class="btn btn-primary btn-lg">
+              <svg class="icon"><use href="#i-download"/></svg>
+              Download for macOS &amp; Windows
+            </a>
+            <a href="#interface" class="btn btn-ghost btn-lg">
+              <svg class="icon"><use href="#i-play"/></svg>
+              Explore the interface
+            </a>
+          </div>
+
+          <p class="hero-fineprint">
+            <span><svg class="icon"><use href="#i-lock"/></svg> 14-day free trial</span>
+            <span><svg class="icon"><use href="#i-monitor"/></svg> macOS 12+ · Windows 10+</span>
+            <span><svg class="icon"><use href="#i-cpu"/></svg> Apple Silicon &amp; Intel</span>
+          </p>
+        </div>
+
+        <!-- ============ APP MOCKUP ============ -->
+        <div class="app-window" id="appWindow" data-reveal>
+          <div class="app-chrome">
+            <div class="chrome-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="chrome-path">
+              <svg class="icon"><use href="#i-folder"/></svg>
+              Hertz Sync — Sound Library v1.1
+            </div>
+            <div class="chrome-count">1,231 / 40,000 sounds</div>
+          </div>
+
+          <div class="app-body">
+            <aside class="app-side">
+              <div class="app-side-group">
+                <p class="app-label">Workspace</p>
+                <button class="app-nav" data-view="overview" type="button">
+                  <svg class="icon"><use href="#i-grid"/></svg>
+                  <span>Overview</span>
+                </button>
+                <button class="app-nav" data-view="sounds" type="button">
+                  <svg class="icon"><use href="#i-music"/></svg>
+                  <span>All Sounds</span>
+                  <em class="pill-count">1,231</em>
+                </button>
+                <button class="app-nav" data-view="duplicates" type="button">
+                  <svg class="icon"><use href="#i-copy"/></svg>
+                  <span>Duplicates</span>
+                  <em class="pill-count pill-count-dim">27</em>
+                </button>
+                <button class="app-nav is-active" data-view="review" type="button">
+                  <svg class="icon"><use href="#i-sparkles"/></svg>
+                  <span>Review UCS</span>
+                  <em class="pill-count" data-suggestion-badge>188</em>
+                </button>
+              </div>
+              <div class="app-side-group app-side-tools">
+                <p class="app-label">AI Tools</p>
+                <div class="app-tool">
+                  <svg class="icon"><use href="#i-scissors"/></svg> Slicer
+                </div>
+                <div class="app-tool">
+                  <svg class="icon"><use href="#i-sliders"/></svg> Reshape
+                </div>
+              </div>
+              <div class="app-side-status">
+                <span class="status-dot"></span>
+                Local engine idle · 0 KB uploaded
+              </div>
+            </aside>
+
+            <div class="app-main">
+              <!-- Overview -->
+              <section class="app-view" data-panel="overview" aria-label="Library overview">
+                <div class="app-view-head">
+                  <div>
+                    <h2>Library overview</h2>
+                    <p>60 Hz refresh · indexed locally in 11.4 s</p>
+                  </div>
+                  <span class="chip chip-quiet">Updated just now</span>
+                </div>
+                <div class="stat-grid">
+                  <div class="stat-tile"><span>Indexed</span><strong>1,231</strong><em class="up">+188</em></div>
+                  <div class="stat-tile"><span>UCS tagged</span><strong>92%</strong><em class="up">+6.2%</em></div>
+                  <div class="stat-tile"><span>Duplicates</span><strong>27</strong><em>2.3 GB</em></div>
+                  <div class="stat-tile"><span>Storage</span><strong>18.4<small>GB</small></strong><em>local</em></div>
+                </div>
+                <p class="app-label">Library distribution</p>
+                <div class="meter-list">
+                  <div class="meter-row"><span>Ambience</span><i><b style="--w:34%"></b></i><em>34%</em></div>
+                  <div class="meter-row"><span>User Interface</span><i><b style="--w:22%"></b></i><em>22%</em></div>
+                  <div class="meter-row"><span>Foley</span><i><b style="--w:18%"></b></i><em>18%</em></div>
+                  <div class="meter-row"><span>Impacts</span><i><b style="--w:14%"></b></i><em>14%</em></div>
+                  <div class="meter-row"><span>Transitions</span><i><b style="--w:12%"></b></i><em>12%</em></div>
+                </div>
+              </section>
+
+              <!-- All sounds -->
+              <section class="app-view" data-panel="sounds" aria-label="All sounds">
+                <div class="app-view-head">
+                  <div>
+                    <h2>All sounds</h2>
+                    <p>Showing 5 of 1,231 indexed assets</p>
+                  </div>
+                  <span class="search-mock"><svg class="icon"><use href="#i-search"/></svg> Search 40,000 files…</span>
+                </div>
+                <div class="sound-list">
+                  <div class="sound-row">
+                    <button class="row-play" type="button" data-sound="UI Click 06.wav" aria-label="Preview UI Click 06">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>UI Click 06.wav</strong><span>… › Library › User Interface</span></div>
+                    <div class="row-tag"><b>UIClick</b><small>User Interface › Click</small></div>
+                    <span class="row-len">0:00.184</span>
+                  </div>
+                  <div class="sound-row">
+                    <button class="row-play" type="button" data-sound="UI Beep 07.wav" aria-label="Preview UI Beep 07">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>UI Beep 07.wav</strong><span>… › Library › User Interface</span></div>
+                    <div class="row-tag"><b>UIBeep</b><small>User Interface › Beep</small></div>
+                    <span class="row-len">0:00.091</span>
+                  </div>
+                  <div class="sound-row">
+                    <button class="row-play" type="button" data-sound="Metal Impact 12.wav" aria-label="Preview Metal Impact 12">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>Metal Impact 12.wav</strong><span>… › Library › Impacts › Metal</span></div>
+                    <div class="row-tag"><b>IMPACTMetal</b><small>Impacts › Metal</small></div>
+                    <span class="row-len">0:02.640</span>
+                  </div>
+                  <div class="sound-row">
+                    <button class="row-play" type="button" data-sound="Rain Roof Heavy 03.wav" aria-label="Preview Rain Roof Heavy 03">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>Rain Roof Heavy 03.wav</strong><span>… › Library › Ambience › Weather</span></div>
+                    <div class="row-tag"><b>AMBWeather</b><small>Ambience › Weather › Rain</small></div>
+                    <span class="row-len">0:03:12</span>
+                  </div>
+                  <div class="sound-row">
+                    <button class="row-play" type="button" data-sound="Servo Whine Loop.wav" aria-label="Preview Servo Whine Loop">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>Servo Whine Loop.wav</strong><span>… › Library › Machines › Servo</span></div>
+                    <div class="row-tag"><b>MECHServo</b><small>Machines › Servo</small></div>
+                    <span class="row-len">0:00:08</span>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Duplicates -->
+              <section class="app-view" data-panel="duplicates" aria-label="Duplicate radar">
+                <div class="app-view-head">
+                  <div>
+                    <h2>Duplicate radar</h2>
+                    <p>Perceptual fingerprints across 6 mounted drives</p>
+                  </div>
+                  <span class="chip chip-quiet">27 flagged</span>
+                </div>
+                <div class="dup-list">
+                  <div class="dup-group">
+                    <div class="dup-head">
+                      <span class="dup-sim">99.8% match</span>
+                      <span class="dup-path">/SFX/Impacts/Metal_Hit_01.wav</span>
+                    </div>
+                    <div class="dup-body">
+                      <span class="dup-file">Metal_Hit_01.wav<em>2.4 MB · 96 kHz</em></span>
+                      <span class="dup-file">Metal_Hit_01_copy.wav<em>2.4 MB · 96 kHz</em></span>
+                      <button class="btn btn-mini" type="button" data-toast="Moved duplicate to quarantine — originals untouched.">Resolve</button>
+                    </div>
+                  </div>
+                  <div class="dup-group">
+                    <div class="dup-head">
+                      <span class="dup-sim">94.1% match</span>
+                      <span class="dup-path">/Packs/Ambience/Rain_Roof_03.wav</span>
+                    </div>
+                    <div class="dup-body">
+                      <span class="dup-file">Rain_Roof_03.wav<em>18.2 MB · 48 kHz</em></span>
+                      <span class="dup-file">Rain_Roof_03_48k.wav<em>18.2 MB · 48 kHz</em></span>
+                      <button class="btn btn-mini" type="button" data-toast="Moved duplicate to quarantine — originals untouched.">Resolve</button>
+                    </div>
+                  </div>
+                  <div class="dup-group">
+                    <div class="dup-head">
+                      <span class="dup-sim">88.6% match</span>
+                      <span class="dup-path">/Archive/UI/Click_06.wav</span>
+                    </div>
+                    <div class="dup-body">
+                      <span class="dup-file">Click_06.wav<em>0.4 MB · 44.1 kHz</em></span>
+                      <span class="dup-file">UI_Click_06_edit.wav<em>0.6 MB · 44.1 kHz</em></span>
+                      <button class="btn btn-mini" type="button" data-toast="Moved duplicate to quarantine — originals untouched.">Resolve</button>
+                    </div>
+                  </div>
+                </div>
+                <p class="app-footnote">2.3 GB reclaimable · fingerprints stay on-device</p>
+              </section>
+
+              <!-- Review -->
+              <section class="app-view is-active" data-panel="review" aria-label="UCS review queue">
+                <div class="app-view-head">
+                  <div>
+                    <h2>Suggested categories <span class="chip chip-amber">AI reviewing</span></h2>
+                    <p>330 sounds analyzed with local neural Universal Category System rules.</p>
+                  </div>
+                  <button class="btn btn-primary btn-sm" type="button" id="acceptAll">
+                    <svg class="icon"><use href="#i-check"/></svg>
+                    Accept all <span data-suggestion-count>188</span> suggestions
+                  </button>
+                </div>
+
+                <div class="sound-list review-list" id="reviewList">
+                  <div class="sound-row review-row">
+                    <button class="row-play" type="button" data-sound="UI Click 06.wav" aria-label="Preview UI Click 06">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>UI Click 06.wav</strong><span>… › Library › User Interface</span></div>
+                    <div class="row-tag"><b>UIClick</b><small>User Interface › Click</small></div>
+                    <button class="btn-accept" type="button" data-accept>
+                      <svg class="icon"><use href="#i-check"/></svg> Accept
+                    </button>
+                  </div>
+                  <div class="sound-row review-row">
+                    <button class="row-play" type="button" data-sound="UI Beep 07.wav" aria-label="Preview UI Beep 07">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>UI Beep 07.wav</strong><span>… › Library › User Interface</span></div>
+                    <div class="row-tag"><b>UIBeep</b><small>User Interface › Beep</small></div>
+                    <button class="btn-accept" type="button" data-accept>
+                      <svg class="icon"><use href="#i-check"/></svg> Accept
+                    </button>
+                  </div>
+                  <div class="sound-row review-row">
+                    <button class="row-play" type="button" data-sound="Metal Impact 12.wav" aria-label="Preview Metal Impact 12">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>Metal Impact 12.wav</strong><span>… › Library › Impacts › Metal</span></div>
+                    <div class="row-tag"><b>IMPACTMetal</b><small>Impacts › Metal</small></div>
+                    <button class="btn-accept" type="button" data-accept>
+                      <svg class="icon"><use href="#i-check"/></svg> Accept
+                    </button>
+                  </div>
+                  <div class="sound-row review-row">
+                    <button class="row-play" type="button" data-sound="Rain Roof Heavy 03.wav" aria-label="Preview Rain Roof Heavy 03">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>Rain Roof Heavy 03.wav</strong><span>… › Library › Ambience › Weather</span></div>
+                    <div class="row-tag"><b>AMBWeather</b><small>Ambience › Weather › Rain</small></div>
+                    <button class="btn-accept" type="button" data-accept>
+                      <svg class="icon"><use href="#i-check"/></svg> Accept
+                    </button>
+                  </div>
+                  <div class="sound-row review-row">
+                    <button class="row-play" type="button" data-sound="Servo Whine Loop.wav" aria-label="Preview Servo Whine Loop">
+                      <svg class="icon icon-play"><use href="#i-play"/></svg>
+                      <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+                    </button>
+                    <div class="row-meta"><strong>Servo Whine Loop.wav</strong><span>… › Library › Machines › Servo</span></div>
+                    <div class="row-tag"><b>MECHServo</b><small>Machines › Servo</small></div>
+                    <button class="btn-accept" type="button" data-accept>
+                      <svg class="icon"><use href="#i-check"/></svg> Accept
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <!-- Player -->
+          <div class="app-player">
+            <button class="btn-master" id="masterPlay" type="button" aria-label="Play or pause preview">
+              <svg class="icon icon-play"><use href="#i-play"/></svg>
+              <svg class="icon icon-pause"><use href="#i-pause"/></svg>
+            </button>
+            <div class="player-info">
+              <strong id="playerTitle">Nothing playing</strong>
+              <small id="playerHint">Press <span class="mono">▶</span> on any sound to preview</small>
+            </div>
+            <div class="player-track" aria-hidden="true">
+              <div class="player-progress" id="playerProgress"></div>
+            </div>
+            <div class="player-time mono" id="playerTime">0:00</div>
+            <div class="wave-bars" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROOF / COMPATIBILITY ============ -->
+    <section class="proof" aria-label="Compatibility">
+      <div class="container proof-inner">
+        <p>Drops straight into your pipeline</p>
+        <div class="marquee">
+          <div class="marquee-track">
+            <span>Pro Tools</span><span>Nuendo</span><span>Reaper</span><span>Ableton Live</span>
+            <span>Logic Pro</span><span>DaVinci Resolve</span><span>Unity</span><span>Unreal Engine</span>
+            <span>Wwise</span><span>FMOD</span>
+            <span>Pro Tools</span><span>Nuendo</span><span>Reaper</span><span>Ableton Live</span>
+            <span>Logic Pro</span><span>DaVinci Resolve</span><span>Unity</span><span>Unreal Engine</span>
+            <span>Wwise</span><span>FMOD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="section" id="features">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">Engineered for audio professionals</span>
+          <h2>Everything you need to organize <span class="text-gradient">millions of audio files</span> locally.</h2>
+          <p>Say goodbye to messy folder structures. Hertz Sync pairs neural categorization with a local index that opens before your ears do.</p>
+        </header>
+
+        <div class="feature-grid">
+          <article class="card card-spotlight" data-reveal>
+            <div class="card-icon"><svg class="icon"><use href="#i-sparkles"/></svg></div>
+            <h3>AI UCS Review</h3>
+            <p>Intelligently parses file names, folder hierarchies, and embedded metadata to propose Universal Category System compliant tags instantly.</p>
+            <div class="card-foot"><span>Zero cloud latency</span><svg class="icon"><use href="#i-zap"/></svg></div>
+          </article>
+
+          <article class="card card-spotlight" data-reveal style="--delay:.06s">
+            <div class="card-icon"><svg class="icon"><use href="#i-scissors"/></svg></div>
+            <h3>Smart Slicer</h3>
+            <p>Detect transients, tail decays, and multi-sample hits automatically. Slice long recordings into hundreds of clean one-shots in seconds.</p>
+            <div class="card-foot"><span>Zero-crossing accuracy</span><svg class="icon"><use href="#i-activity"/></svg></div>
+          </article>
+
+          <article class="card card-spotlight" data-reveal style="--delay:.12s">
+            <div class="card-icon"><svg class="icon"><use href="#i-sliders"/></svg></div>
+            <h3>Batch reshape &amp; export</h3>
+            <p>Apply bulk normalization, sample-rate conversion, stereo-to-mono flattening, and custom renaming recipes across your entire library.</p>
+            <div class="card-foot"><span>Multi-threaded rendering</span><svg class="icon"><use href="#i-cpu"/></svg></div>
+          </article>
+
+          <article class="card card-spotlight" data-reveal style="--delay:.18s">
+            <div class="card-icon"><svg class="icon"><use href="#i-copy"/></svg></div>
+            <h3>Duplicate radar</h3>
+            <p>Perceptual hashing catches re-named, re-pitched, and re-encoded duplicates across every mounted drive before they bloat your archive.</p>
+            <div class="card-foot"><span>Waveform fingerprinting</span><svg class="icon"><use href="#i-shield"/></svg></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BENTO ENGINE ============ -->
+    <section class="section section-bento" id="engine">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">Next-gen architecture</span>
+          <h2>Designed for speed. <span class="text-gradient">Built for sound designers.</span></h2>
+          <p>A native Rust &amp; C++ core, a local neural model, and an interface that respects your ears — no browser engine, no upload queue.</p>
+        </header>
+
+        <div class="bento">
+          <article class="bento-card bento-wide card-spotlight" data-reveal>
+            <span class="chip chip-amber"><svg class="icon"><use href="#i-shield"/></svg> 100% offline privacy</span>
+            <h3>Your samples never leave your machine.</h3>
+            <p>Unlike cloud-reliant sample managers, Hertz Sync runs entirely on your local CPU and GPU. No subscription telemetry, no data collection, no round-trip latency.</p>
+            <div class="offline-schematic" aria-hidden="true">
+              <span class="node"><svg class="icon"><use href="#i-folder"/></svg> /SFX Library</span>
+              <span class="node-line"></span>
+              <span class="node node-accent"><svg class="icon"><use href="#i-cpu"/></svg> Neural pass</span>
+              <span class="node-line"></span>
+              <span class="node"><svg class="icon"><use href="#i-disc"/></svg> hertz.db</span>
+              <span class="node-lock"><svg class="icon"><use href="#i-lock"/></svg> 0 KB uploaded</span>
+            </div>
+            <ul class="check-list">
+              <li><svg class="icon"><use href="#i-check-circle"/></svg> Air-gapped safe</li>
+              <li><svg class="icon"><use href="#i-check-circle"/></svg> Local SQLite database</li>
+              <li><svg class="icon"><use href="#i-check-circle"/></svg> No account required</li>
+            </ul>
+          </article>
+
+          <article class="bento-card card-spotlight" data-reveal style="--delay:.06s">
+            <div class="card-icon"><svg class="icon"><use href="#i-zap"/></svg></div>
+            <h3>Lightning index</h3>
+            <p>Index 40,000+ audio files in under 12 seconds with the multi-threaded scan core.</p>
+            <div class="speed-panel">
+              <div class="speed-top"><span>Scanning speed</span><strong>3,450 files/sec</strong></div>
+              <div class="speed-bar"><i style="--w:92%"></i></div>
+              <div class="speed-foot"><span>40,000 files</span><span class="mono">ETA 11.4 s</span></div>
+            </div>
+          </article>
+
+          <article class="bento-card card-spotlight" data-reveal style="--delay:.12s">
+            <div class="card-icon"><svg class="icon"><use href="#i-layers"/></svg></div>
+            <h3>UCS taxonomy, decoded</h3>
+            <p>The full Universal Category System 8.2 tree ships on-device — with subcategories tuned for game audio and post.</p>
+            <div class="tag-tree" aria-hidden="true">
+              <span class="tag-root">AMBIENCE</span>
+              <span class="tag-branch">WEATHER</span>
+              <span class="tag-leaf is-hot">RAIN</span>
+              <span class="tag-sub">ROOF</span>
+            </div>
+            <p class="bento-note mono">CATID / FXName / CreatorID auto-filled</p>
+          </article>
+
+          <article class="bento-card bento-wide card-spotlight" data-reveal style="--delay:.18s">
+            <div class="meta-export">
+              <div>
+                <div class="card-icon"><svg class="icon"><use href="#i-arrow-up-right"/></svg></div>
+                <h3>Metadata that travels</h3>
+                <p>Write UCS tags back as BWF/iXML, generate Soundminer-friendly sidecars, or export a clean CSV manifest for your asset pipeline.</p>
+              </div>
+              <div class="export-chips" aria-hidden="true">
+                <span>iXML</span><span>BWF</span><span>CSV</span><span>Soundminer</span><span>Reaper regions</span><span>Pro Tools clips</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORKFLOW ============ -->
+    <section class="section" id="workflow">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">Zero-friction workflow</span>
+          <h2>From raw folder to session-ready <span class="text-gradient">in four moves.</span></h2>
+          <p>No imports. No proprietary library format. Point Hertz Sync at a drive and keep working while it listens.</p>
+        </header>
+
+        <div class="steps">
+          <article class="step" data-reveal>
+            <span class="step-num">01</span>
+            <h3>Point at a folder</h3>
+            <p>Drop in a drive, a sample pack, or your entire SFX archive. Read-only scanning by default — originals never move.</p>
+          </article>
+          <article class="step" data-reveal style="--delay:.06s">
+            <span class="step-num">02</span>
+            <h3>Let the engine listen</h3>
+            <p>Local models read filenames, hierarchy, and embedded metadata, then propose UCS categories with confidence scores.</p>
+          </article>
+          <article class="step" data-reveal style="--delay:.12s">
+            <span class="step-num">03</span>
+            <h3>Review in bulk</h3>
+            <p>Keyboard-first review queue. Accept, adjust, or reject — tags are only written back when you say so.</p>
+          </article>
+          <article class="step" data-reveal style="--delay:.18s">
+            <span class="step-num">04</span>
+            <h3>Slice, shape, export</h3>
+            <p>Transient slicing, normalization, sample-rate conversion, and rename recipes — batch processed on all cores.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INTERFACE / SLICER ============ -->
+    <section class="section section-interface" id="interface">
+      <div class="container interface-grid">
+        <div class="interface-copy" data-reveal>
+          <span class="eyebrow">Inside the slicer</span>
+          <h2>One field recording.<br><span class="text-gradient">Two hundred clean one-shots.</span></h2>
+          <p>Transient detection with zero-crossing snapping turns long takes into tidy, loop-ready samples — named, tagged, and filed on export.</p>
+          <ul class="check-list check-list-lg">
+            <li><svg class="icon"><use href="#i-check-circle"/></svg> Threshold, min-gap, and sensitivity per take</li>
+            <li><svg class="icon"><use href="#i-check-circle"/></svg> Automatic silence trim with tail preservation</li>
+            <li><svg class="icon"><use href="#i-check-circle"/></svg> Slice names follow your UCS rename recipe</li>
+          </ul>
+          <a href="#pricing" class="link-arrow">See the full toolkit <svg class="icon"><use href="#i-arrow-right"/></svg></a>
+        </div>
+
+        <div class="slicer-panel" data-reveal style="--delay:.1s">
+          <div class="slicer-head">
+            <span class="file-chip"><svg class="icon"><use href="#i-music"/></svg> AMB_Forest_Birds_96k.wav</span>
+            <span class="mono">0:48.213 · 96 kHz / 24-bit</span>
+          </div>
+
+          <div class="slicer-display">
+            <div class="wave" id="slicerWave"></div>
+            <div class="playhead" id="slicerPlayhead"></div>
+          </div>
+
+          <div class="slicer-ruler mono"><span>0:00</span><span>0:12</span><span>0:24</span><span>0:36</span><span>0:48</span></div>
+
+          <div class="slicer-meta">
+            <div class="slicer-stat"><span>Slices detected</span><strong><span id="sliceCount">214</span></strong></div>
+            <div class="slicer-stat"><span>Sensitivity</span><strong>72%</strong></div>
+            <div class="slicer-stat"><span>Zero-crossing</span><strong class="ok">Locked</strong></div>
+          </div>
+
+          <div class="slicer-actions">
+            <button class="btn btn-primary btn-sm" type="button" id="slicerPlay">
+              <svg class="icon"><use href="#i-play"/></svg> Preview slices
+            </button>
+            <button class="btn btn-ghost btn-sm" type="button" id="sliceToggle">
+              <svg class="icon"><use href="#i-scissors"/></svg> Show markers
+            </button>
+            <button class="btn btn-ghost btn-sm" type="button" id="sliceExport">
+              <svg class="icon"><use href="#i-download"/></svg> Export 214
+            </button>
+          </div>
+
+          <div class="slice-chips">
+            <span>Slice_001_AMBForest</span>
+            <span>Slice_002_AMBForest</span>
+            <span>Slice_003_AMBForest</span>
+            <span>+211 more</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow">Simple, fair pricing</span>
+          <h2>One license. Lifetime updates. <span class="text-gradient">No monthly subscriptions.</span></h2>
+          <p>Join thousands of professional sound designers and music producers who own their tools forever.</p>
+        </header>
+
+        <div class="pricing-grid">
+          <article class="price-card" data-reveal>
+            <span class="price-label">Studio Trial</span>
+            <div class="price-amount"><strong>$0</strong><span>for 14 days</span></div>
+            <p class="price-desc">Kick the tires on your own library. No card, no account, no upload.</p>
+            <ul class="price-list">
+              <li><svg class="icon"><use href="#i-check"/></svg> Full neural tagging engine</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Index up to 5,000 files</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Slicer &amp; duplicate radar</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> One local library</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Community support</li>
+            </ul>
+            <a href="#download" class="btn btn-ghost btn-block" data-download>Start free trial</a>
+            <p class="price-fine">Offline activation · macOS &amp; Windows</p>
+          </article>
+
+          <article class="price-card price-card-pro" data-reveal style="--delay:.08s">
+            <span class="price-badge">Most popular</span>
+            <span class="price-label">Pro Lifetime License</span>
+            <div class="price-amount"><strong>$59.90</strong><span>once</span></div>
+            <p class="price-desc">For professional sound designers, editors, and studio producers.</p>
+            <ul class="price-list">
+              <li><svg class="icon"><use href="#i-check"/></svg> Unlimited library index (40,000+)</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> AI UCS auto-tagging &amp; review engine</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Advanced slicer &amp; duplicate detector</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Batch reshape &amp; metadata export</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Lifetime updates &amp; priority support</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Activation on 2 machines</li>
+            </ul>
+            <button class="btn btn-primary btn-block btn-lg" type="button" data-checkout>
+              <svg class="icon"><use href="#i-download"/></svg> Get Pro license — $59.90
+            </button>
+            <p class="price-fine">30-day money-back guarantee · Instant offline activation</p>
+          </article>
+        </div>
+
+        <div class="pricing-trust" data-reveal>
+          <span><svg class="icon"><use href="#i-lock"/></svg> No telemetry</span>
+          <span><svg class="icon"><use href="#i-disc"/></svg> Own it forever</span>
+          <span><svg class="icon"><use href="#i-monitor"/></svg> Native on Apple Silicon</span>
+          <span><svg class="icon"><use href="#i-cpu"/></svg> GPU-accelerated</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section section-faq" id="faq">
+      <div class="container faq-grid">
+        <div class="faq-intro" data-reveal>
+          <span class="eyebrow">Questions, answered</span>
+          <h2>Everything you were<br>about to ask.</h2>
+          <p>Still unsure? Write to <a href="mailto:hello@hertzsync.audio">hello@hertzsync.audio</a> — a human who cuts sound replies.</p>
+
+          <figure class="faq-quote">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <blockquote>I re-tagged twelve years of field recordings in one afternoon. The review queue is the first AI assistant I actually trust.</blockquote>
+            <figcaption>
+              <span class="quote-avatar">MV</span>
+              <span><strong>Mara Voss</strong><small>Supervising sound editor · Berlin</small></span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="faq-list" data-reveal style="--delay:.08s">
+          <details class="faq-item" open>
+            <summary>Does Hertz Sync really work with the network off?<span class="faq-icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-body"><p>Yes. The neural models, UCS taxonomy, and search index all live on your drive. License activation is an offline key exchange — no account, no cloud sync, no background pings. You can run it on a permanently air-gapped machine.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Which formats and sample rates are supported?<span class="faq-icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-body"><p>WAV, AIFF, FLAC, MP3, OGG, and RF64 read natively, up to 384 kHz / 32-bit float. Export targets include WAV, AIFF, FLAC, and MP3 with dithering options.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How does the AI decide on a UCS category?<span class="faq-icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-body"><p>It combines filename and folder semantics with embedded metadata and an audio embedding pass, then scores candidates against the UCS 8.2 tree. Every suggestion lands in a review queue — nothing is written to your files without approval.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Will it modify or move my original files?<span class="faq-icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-body"><p>Never by default. Scanning is read-only, and tags can be stored in the local database or written to sidecar files. Any destructive operation — rename, reshape, move — is explicit, previewable, and reversible.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Does it integrate with my DAW or asset pipeline?<span class="faq-icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-body"><p>Drag and drop into Pro Tools, Nuendo, Reaper, Ableton Live, Logic Pro, Resolve, Unity, Unreal, Wwise, and FMOD. Metadata exports as BWF/iXML, CSV manifests, or Soundminer-compatible sidecars.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>What are the system requirements?<span class="faq-icon"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-body"><p>macOS 12 Monterey or Windows 10 (21H2)+, 8 GB RAM, 2 GB free disk for the app and models. Apple Silicon, Intel, and AMD are all native. A discrete GPU speeds up long indexing passes but is not required.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA BAND ============ -->
+    <section class="cta-band">
+      <div class="container">
+        <div class="cta-inner" data-reveal>
+          <div>
+            <span class="eyebrow">Ready when you are</span>
+            <h2>Stop managing files.<br><span class="text-gradient">Start designing sound.</span></h2>
+            <p>Download the trial, point it at one folder, and watch 40,000 files organize themselves.</p>
+          </div>
+          <div class="cta-actions">
+            <a href="#pricing" class="btn btn-primary btn-lg">
+              <svg class="icon"><use href="#i-download"/></svg> Download free trial
+            </a>
+            <a href="#pricing" class="btn btn-ghost btn-lg">Buy Pro — $59.90</a>
+            <span class="cta-note"><svg class="icon"><use href="#i-check-circle"/></svg> 14 days free · No account · No upload</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <span class="brand-mark"><svg viewBox="0 0 24 24" class="icon"><use href="#i-waveform"/></svg></span>
+          <span class="brand-type"><strong>Hertz Sync</strong><small>Sound Design</small></span>
+        </a>
+        <p>Offline neural audio asset management for people who work with sound.</p>
+        <form class="newsletter" id="newsletterForm">
+          <label class="sr-only" for="newsletterEmail">Email address</label>
+          <input id="newsletterEmail" type="email" placeholder="you@studio.com" required>
+          <button class="btn btn-primary btn-sm" type="submit">Join</button>
+        </form>
+        <p class="newsletter-note">Field notes, once a month. No noise.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Product">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#engine">AI engine</a>
+        <a href="#interface">Slicer</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Resources">
+        <h4>Resources</h4>
+        <a href="#workflow">Workflow</a>
+        <a href="#engine">UCS guide</a>
+        <a href="#faq">System requirements</a>
+        <a href="#pricing">Release notes</a>
+        <a href="mailto:hello@hertzsync.audio">Support</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Company">
+        <h4>Company</h4>
+        <a href="#top">About</a>
+        <a href="#top">Press kit</a>
+        <a href="mailto:hello@hertzsync.audio">Contact</a>
+        <a href="#top">Privacy</a>
+        <a href="#top">Terms</a>
+      </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> Hertz Sync Audio Labs. All rights reserved.</p>
+      <p class="footer-tag mono">Built for professional sound designers · v1.1.0</p>
+      <div class="footer-social">
+        <a href="#top">GitHub <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+        <a href="#top">X <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+        <a href="#top">Discord <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="pulse-dot"></span>
+    <span id="toastMsg">Action successful</span>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
