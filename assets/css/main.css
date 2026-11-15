@@ -1586,3 +1586,40 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
   }
   html.js [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   MOVE PRO TO A NEW COMPUTER (seats)
+   ============================================================ */
+.seats-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 64px; align-items: center; }
+.seats-copy > p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 26px; }
+.seats-steps { margin: 0; padding-left: 20px; display: grid; gap: 14px; color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
+.seats-steps b { color: var(--text); font-weight: 600; }
+.seats-steps i { color: var(--amber-bright); font-style: normal; }
+.seats-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 26px; }
+.seats-key-label { font-size: 0.62rem; color: var(--muted-2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+.seats-key { font-size: 1rem; color: var(--text); letter-spacing: 0.04em; margin-bottom: 22px; }
+.seats-list { list-style: none; display: grid; gap: 10px; margin: 0 0 24px; padding: 0; }
+.seats-list li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 14px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: 0.78rem; color: var(--muted); }
+.seat-badge { font-size: 0.62rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.seat-badge-on { color: var(--green); background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.25); }
+.seat-badge-off { color: var(--amber); background: rgba(245, 165, 36, 0.1); border: 1px solid rgba(245, 165, 36, 0.25); }
+.seats-note { margin-top: 14px; font-size: 0.66rem; color: var(--muted-2); text-align: center; line-height: 1.6; }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-list { max-width: 860px; margin: 0 auto; display: grid; gap: 12px; }
+.faq-list details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0 26px; transition: border-color 0.25s var(--ease); }
+.faq-list details[open] { border-color: var(--line-strong); }
+.faq-list summary { cursor: pointer; padding: 20px 0; font-size: 0.92rem; font-weight: 600; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { content: "+"; color: var(--amber); font-size: 1.3rem; line-height: 1; flex: none; }
+.faq-list details[open] summary::after { content: "–"; }
+.faq-list p { color: var(--muted); font-size: 0.85rem; line-height: 1.8; margin: 0 0 22px; }
+.faq-list a { color: var(--amber-bright); }
+
+@media (max-width: 900px) {
+  .seats-grid { grid-template-columns: 1fr; gap: 40px; }
+  .faq-list { gap: 10px; }
+  .faq-list details { padding: 0 20px; }
+}
