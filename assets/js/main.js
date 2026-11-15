@@ -1,5 +1,5 @@
 /* ============================================================
-   Hertz Sync Sound Design — interactions
+   Hertz Sync Sound Design — 交互
    ============================================================ */
 (function () {
   'use strict';
@@ -55,15 +55,6 @@
     });
   }
 
-  /* ---------- Cursor spotlight ---------- */
-  $$('.card-spotlight').forEach(function (card) {
-    card.addEventListener('mousemove', function (e) {
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-  });
-
   /* ---------- App workspace tabs ---------- */
   var navButtons = $$('.app-nav');
   var panels = $$('.app-view');
@@ -81,6 +72,75 @@
     });
   });
 
+  /* ---------- Search filtering ---------- */
+  var searchInput = $('#demoSearch');
+  var filterChips = $$('.filter-chip');
+  var resultRows = $$('#searchList .result-row');
+  var searchEmpty = $('#searchEmpty');
+  var activeCat = 'all';
+
+  function applyFilter() {
+    var q = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    var visible = 0;
+    resultRows.forEach(function (row) {
+      var catOK = activeCat === 'all' || row.getAttribute('data-cat') === activeCat;
+      var text = row.getAttribute('data-search') || '';
+      var queryOK = !q || text.toLowerCase().indexOf(q) !== -1;
+      var show = catOK && queryOK;
+      row.classList.toggle('is-hidden', !show);
+      if (show) visible++;
+    });
+    if (searchEmpty) searchEmpty.hidden = visible > 0;
+  }
+
+  filterChips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      activeCat = chip.getAttribute('data-filter') || 'all';
+      filterChips.forEach(function (c) { c.classList.toggle('is-active', c === chip); });
+      applyFilter();
+    });
+  });
+  if (searchInput) searchInput.addEventListener('input', applyFilter);
+
+  /* ---------- Favorites ---------- */
+  $$('.row-fav').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var on = btn.classList.toggle('is-fav');
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? '取消收藏' : '收藏');
+    });
+  });
+
+  /* ---------- Waveform bars ---------- */
+  var seed = 20261115;
+  function rand() {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  }
+
+  $$('.row-wave').forEach(function (wave) {
+    for (var i = 0; i < 18; i++) {
+      var bar = document.createElement('i');
+      var h = 24 + Math.round(rand() * 76);
+      bar.style.height = h + '%';
+      wave.appendChild(bar);
+    }
+  });
+
+  var demoWave = $('#demoWave');
+  if (demoWave) {
+    var playhead = $('#demoPlayhead');
+    for (var j = 0; j < 62; j++) {
+      var barEl = document.createElement('i');
+      var t = j / 62;
+      var envelope = 0.4 + 0.6 * Math.sin(Math.PI * t);
+      var h2 = Math.round((16 + rand() * 78) * envelope);
+      barEl.style.height = Math.max(6, h2) + '%';
+      demoWave.appendChild(barEl);
+    }
+    if (playhead) demoWave.appendChild(playhead);
+  }
+
   /* ---------- Simulated transport ---------- */
   var appWindow = $('#appWindow');
   var masterPlay = $('#masterPlay');
@@ -89,7 +149,7 @@
   var playerProgress = $('#playerProgress');
   var playerTime = $('#playerTime');
   var player = { name: null, playing: false, elapsed: 0, duration: 4.4, raf: null, last: 0 };
-  var defaultHint = 'Press <span class="mono">▶</span> on any sound to preview';
+  var defaultHint = '点击任意声音的 <span class="mono">▶</span> 试听';
 
   function fmt(sec) {
     var s = Math.floor(sec);
@@ -98,6 +158,13 @@
 
   function resetRows() {
     $$('.sound-row').forEach(function (row) { row.classList.remove('is-playing'); });
+    $$('.demo-result').forEach(function (row) { row.classList.remove('is-playing'); });
+  }
+
+  function activePanelSound() {
+    var panel = $('.app-view.is-active');
+    var btn = panel ? $('.row-play', panel) : null;
+    return btn ? btn.getAttribute('data-sound') : null;
   }
 
   function findRow(name) {
@@ -114,11 +181,11 @@
 
   function paintPlayer() {
     if (appWindow) appWindow.classList.toggle('is-playing', player.playing);
-    if (masterPlay) masterPlay.setAttribute('aria-label', player.playing ? 'Pause preview' : 'Play preview');
-    if (playerTitle) playerTitle.textContent = player.name || 'Nothing playing';
+    if (masterPlay) masterPlay.setAttribute('aria-label', player.playing ? '暂停试听' : '播放试听');
+    if (playerTitle) playerTitle.textContent = player.name || '未在试听';
     if (playerHint) {
       playerHint.innerHTML = player.playing
-        ? 'Simulated local preview · no audio uploaded'
+        ? '本地模拟试听 · 不上传音频'
         : defaultHint;
     }
     if (playerTime) playerTime.textContent = fmt(player.elapsed);
@@ -170,17 +237,18 @@
     player.raf = requestAnimationFrame(tick);
   }
 
-  $$('.row-play').forEach(function (btn) {
+  function parseLen(text) {
+    var parts = text.split(':').map(Number);
+    var sec = 0;
+    for (var i = 0; i < parts.length; i++) sec = sec * 60 + (parts[i] || 0);
+    return Math.min(8, Math.max(3, sec || 4.4));
+  }
+
+  $$('.sound-row .row-play').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var row = btn.closest('.sound-row');
       var len = $('.row-len', row);
-      var parsed = 4.4;
-      if (len) {
-        var raw = len.textContent.trim();
-        var parts = raw.split(':').map(Number);
-        if (parts.length === 3) parsed = Math.min(9, Math.max(3, parts[2] || 4));
-      }
-      playSound(btn.getAttribute('data-sound'), parsed, row);
+      playSound(btn.getAttribute('data-sound'), len ? parseLen(len.textContent.trim()) : 4.4, row);
     });
   });
 
@@ -189,10 +257,49 @@
       if (player.playing) {
         stopPlayer();
       } else {
-        playSound(player.name || 'UI Click 06.wav', 4.4);
+        playSound(player.name || activePanelSound() || 'AMBWeather_Rain_Roof_Heavy_03.wav', 4.4);
       }
     });
   }
+
+  /* ---------- Demo player in feature 01 ---------- */
+  var demoPlayer = $('#searchDemo .demo-player');
+  var demoPlayBtn = $('#demoPlay');
+  var demoTimeout;
+  function stopDemo() {
+    if (!demoPlayer) return;
+    demoPlayer.classList.remove('is-demo-playing');
+    $$('.demo-result').forEach(function (r) { r.classList.remove('is-playing'); });
+  }
+  function playDemo(rowEl) {
+    if (!demoPlayer) return;
+    demoPlayer.classList.remove('is-demo-playing');
+    void demoPlayer.offsetWidth;
+    demoPlayer.classList.add('is-demo-playing');
+    $$('.demo-result').forEach(function (r) { r.classList.remove('is-playing'); });
+    if (rowEl) rowEl.classList.add('is-playing');
+    clearTimeout(demoTimeout);
+    demoTimeout = setTimeout(stopDemo, reduceMotion ? 800 : 6000);
+  }
+  if (demoPlayBtn) {
+    demoPlayBtn.addEventListener('click', function () {
+      if (demoPlayer && demoPlayer.classList.contains('is-demo-playing')) {
+        stopDemo();
+      } else {
+        playDemo(null);
+      }
+    });
+  }
+  $$('[data-demo-play]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var row = btn.closest('.demo-result');
+      if (row && row.classList.contains('is-playing')) {
+        stopDemo();
+      } else {
+        playDemo(row);
+      }
+    });
+  });
 
   /* ---------- Accept UCS flow ---------- */
   var suggestionCount = 188;
@@ -204,21 +311,19 @@
     list.insertAdjacentHTML('beforeend',
       '<div class="review-empty">' +
         '<svg class="icon"><use href="#i-check-circle"/></svg>' +
-        '<strong>Review queue cleared</strong>' +
-        '<span>1,231 files tagged · every change reversible</span>' +
+        '<strong>审核队列已清空</strong>' +
+        '<span>建议已处理，所有修改都可以撤销</span>' +
       '</div>');
   }
   function syncSuggestions() {
     $$('[data-suggestion-count]').forEach(function (el) { el.textContent = suggestionCount; });
     $$('[data-suggestion-badge]').forEach(function (el) { el.textContent = suggestionCount; });
     var acceptAll = $('#acceptAll');
-    if (acceptAll) {
-      if (suggestionCount <= 0) {
-        acceptAll.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> Queue cleared';
-        acceptAll.disabled = true;
-        acceptAll.style.opacity = '0.6';
-        acceptAll.style.cursor = 'default';
-      }
+    if (acceptAll && suggestionCount <= 0) {
+      acceptAll.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> 已全部处理';
+      acceptAll.disabled = true;
+      acceptAll.style.opacity = '0.6';
+      acceptAll.style.cursor = 'default';
     }
   }
 
@@ -230,7 +335,7 @@
       suggestionCount = Math.max(0, suggestionCount - 1);
       syncSuggestions();
       setTimeout(function () { row.remove(); maybeReviewEmpty(); }, 340);
-      showToast('UCS category accepted — tag saved to local index.');
+      showToast('已接受建议 — 分类保存在本地索引中。');
     });
   });
 
@@ -248,114 +353,63 @@
       });
       suggestionCount = 0;
       syncSuggestions();
-      showToast('All ' + total + ' suggestions accepted — tags written locally.');
+      showToast('已接受全部 ' + total + ' 条建议，分类保存在本地索引中。');
     });
   }
 
-  /* ---------- Slicer ---------- */
-  var wave = $('#slicerWave');
-  var slicerDisplay = $('.slicer-display');
-  var slicerPlay = $('#slicerPlay');
-  var sliceToggle = $('#sliceToggle');
-  var sliceExport = $('#sliceExport');
-  var slicerPlayhead = $('#slicerPlayhead');
-  var slicerTimeout;
+  /* ---------- UCS section demo ---------- */
+  $$('[data-ucs-accept]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var box = btn.closest('.ucs-suggest');
+      if (box) box.classList.add('is-accepted');
+      btn.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> 已接受建议';
+      btn.disabled = true;
+      showToast('建议已接受 — 可以继续修改或批量命名。');
+    });
+  });
 
-  if (wave) {
-    var TOTAL_BARS = 112;
-    var seed = 20261115;
-    function rand() {
-      seed = (seed * 16807) % 2147483647;
-      return (seed - 1) / 2147483646;
+  /* ---------- Metadata actions ---------- */
+  $$('[data-meta-save]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      showToast('元数据已保存到本地索引。');
+    });
+  });
+  $$('[data-csv]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      showToast('已写入 CSV 清单，可在批量管理中查看。');
+    });
+  });
+
+  /* ---------- Send to Reaper ---------- */
+  var reaperDemo = $('#reaperDemo');
+  var reaperTimer;
+  function sendToReaper(mode) {
+    if (reaperDemo) {
+      reaperDemo.classList.remove('is-sent');
+      void reaperDemo.offsetWidth;
+      reaperDemo.classList.add('is-sent');
+      clearTimeout(reaperTimer);
+      reaperTimer = setTimeout(function () { reaperDemo.classList.remove('is-sent'); }, 1200);
     }
-    for (var i = 0; i < TOTAL_BARS; i++) {
-      var t = i / TOTAL_BARS;
-      var envelope = 0.42 + 0.58 * Math.sin(Math.PI * t);
-      var cluster = 0.45 + 0.55 * Math.abs(Math.sin(t * Math.PI * 9));
-      var h = Math.round((10 + rand() * 58) * envelope * cluster);
-      if (rand() < 0.07) h = 3;
-      var bar = document.createElement('i');
-      bar.style.height = Math.max(3, Math.min(96, h)) + '%';
-      bar.style.opacity = (0.35 + rand() * 0.6).toFixed(2);
-      wave.appendChild(bar);
-    }
-
-    var markerPositions = [7, 14, 22, 31, 37, 45, 53, 61, 68, 76, 84, 91, 96];
-    markerPositions.forEach(function (p) {
-      var m = document.createElement('span');
-      m.className = 'slice-marker';
-      m.style.left = p + '%';
-      if (slicerDisplay) slicerDisplay.appendChild(m);
+    showToast(mode === 'tracks'
+      ? '已按 UCS 类别创建分轨工程。'
+      : '已发送到 Reaper 编辑光标位置。');
+  }
+  $$('[data-send]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      sendToReaper(btn.getAttribute('data-send'));
     });
-  }
-
-  function playSlicer() {
-    if (!slicerDisplay) return;
-    slicerDisplay.classList.remove('is-playing');
-    if (slicerPlayhead) slicerPlayhead.style.animation = 'none';
-    void slicerDisplay.offsetWidth;
-    if (slicerPlayhead) slicerPlayhead.style.animation = '';
-    slicerDisplay.classList.add('is-playing');
-    clearTimeout(slicerTimeout);
-    slicerTimeout = setTimeout(function () {
-      slicerDisplay.classList.remove('is-playing');
-    }, reduceMotion ? 600 : 6600);
-    showToast('Previewing 214 sliced one-shots from the local engine.');
-  }
-
-  if (slicerPlay) slicerPlay.addEventListener('click', playSlicer);
-
-  if (sliceToggle) {
-    sliceToggle.addEventListener('click', function () {
-      if (!slicerDisplay) return;
-      var on = slicerDisplay.classList.toggle('show-slices');
-      sliceToggle.innerHTML = '<svg class="icon"><use href="#i-scissors"/></svg> ' + (on ? 'Hide markers' : 'Show markers');
-    });
-  }
-
-  if (sliceExport) {
-    sliceExport.addEventListener('click', function () {
-      showToast('Exporting 214 slices with UCS names — all cores engaged.');
-    });
-  }
+  });
 
   /* ---------- Generic toast triggers ---------- */
   $$('[data-toast]').forEach(function (el) {
     el.addEventListener('click', function () { showToast(el.getAttribute('data-toast')); });
   });
-  $$('[data-checkout]').forEach(function (el) {
-    el.addEventListener('click', function () {
-      showToast('Opening secure offline checkout — Pro Lifetime $59.90.');
-    });
-  });
   $$('[data-download]').forEach(function (el) {
     el.addEventListener('click', function () {
-      showToast('Preparing macOS & Windows build v1.1.0 — no account needed.');
+      showToast('免费版下载即将开放，请通过页脚“帮助与联系”获取安装包。');
     });
   });
-
-  /* ---------- FAQ accordion ---------- */
-  $$('.faq-item').forEach(function (item) {
-    item.addEventListener('toggle', function () {
-      if (!item.open) return;
-      $$('.faq-item').forEach(function (other) {
-        if (other !== item) other.open = false;
-      });
-    });
-  });
-
-  /* ---------- Newsletter ---------- */
-  var newsletter = $('#newsletterForm');
-  if (newsletter) {
-    newsletter.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input = $('#newsletterEmail');
-      if (input && input.value) {
-        showToast('Subscribed — field notes arrive once a month.');
-        newsletter.reset();
-      }
-    });
-  }
 
   /* ---------- Reveal on scroll ---------- */
   var revealEls = $$('[data-reveal]');

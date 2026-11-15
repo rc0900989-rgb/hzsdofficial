@@ -8,9 +8,9 @@ Official landing page for **Hertz Sync Sound Design**, a sound effects library m
 
 ## What's inside
 
-- `index.html` — the complete single-page site: hero, features, AI engine, workflow, slicer, pricing and FAQ
+- `index.html` — the complete single-page site: hero, sound search, UCS review, metadata and delivery, Reaper handoff, other tools, Free vs Pro, download
 - `assets/css/main.css` — dark studio design system and responsive layout
-- `assets/js/main.js` — interactive app demo, workspace tabs, simulated playback, UCS accept flow, slicer and FAQ
+- `assets/js/main.js` — interactive app demo, workspace tabs, simulated playback, UCS review, metadata actions and Reaper handoff
 - `assets/img/favicon.svg` — site icon
 
 The site is hosted with GitHub Pages from the `main` branch root. Every push to `main` rebuilds and redeploys automatically.
