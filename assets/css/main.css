@@ -1315,7 +1315,9 @@ h3 { font-size: 1.12rem; line-height: 1.4; letter-spacing: -0.015em; font-weight
   color: var(--amber);
 }
 .plan-card h3 { font-size: 1.35rem; margin: 12px 0 8px; letter-spacing: -0.02em; }
-.plan-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.plan-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.plan-price { font-size: 1.6rem; font-weight: 800; color: var(--amber); letter-spacing: -0.02em; margin-bottom: 18px; }
+.plan-price small { font-size: 0.7rem; font-weight: 500; color: var(--muted); margin-left: 4px; }
 .plan-list { display: flex; flex-direction: column; gap: 11px; margin-bottom: 26px; }
 .plan-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.76rem; color: #d3d3dd; line-height: 1.5; }
 .plan-list .icon { width: 0.95rem; height: 0.95rem; color: var(--amber); margin-top: 2px; }
