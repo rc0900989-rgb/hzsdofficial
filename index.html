@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="dark">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hertz Sync Sound Design — 本地音效库管理工具</title>
-  <meta name="description" content="Hertz Sync Sound Design 帮你搜索、试听和整理音效库，让素材从硬盘顺畅进入你的项目。">
+  <title>Hertz Sync Sound Design — Local Sound Library Manager</title>
+  <meta name="description" content="Hertz Sync Sound Design helps you search, audition and organize your sound libraries, so assets move smoothly from your drive into your projects.">
   <meta name="theme-color" content="#07070a">
-  <meta property="og:title" content="Hertz Sync Sound Design — 本地音效库管理工具">
-  <meta property="og:description" content="找到需要的声音，专注于创作。搜索、试听和整理音效库，并把声音送入 Reaper。">
+  <meta property="og:title" content="Hertz Sync Sound Design — Local Sound Library Manager">
+  <meta property="og:description" content="Find the sound you need, and stay focused on creating. Search, audition and organize your library, then send sounds to Reaper.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,7 +59,7 @@
   <header class="site-header" id="siteHeader">
     <div class="scroll-progress" id="scrollProgress"></div>
     <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Hertz Sync 首页">
+      <a class="brand" href="#top" aria-label="Hertz Sync home">
         <span class="brand-mark">
           <svg viewBox="0 0 24 24" class="icon"><use href="#i-waveform"/></svg>
         </span>
@@ -69,24 +69,24 @@
         </span>
       </a>
 
-      <nav class="primary-nav" aria-label="主导航">
-        <a href="#find">查找声音</a>
-        <a href="#ucs">UCS 整理</a>
-        <a href="#metadata">元数据与交付</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="#find">Find sounds</a>
+        <a href="#ucs">UCS</a>
+        <a href="#metadata">Metadata &amp; delivery</a>
         <a href="#reaper">Reaper</a>
-        <a href="#plans">免费版与 Pro</a>
+        <a href="#plans">Free &amp; Pro</a>
       </nav>
 
       <div class="header-actions">
         <span class="offline-chip">
           <svg class="icon"><use href="#i-lock"/></svg>
-          本地运行
+          Local
         </span>
         <a href="#download" class="btn btn-primary btn-sm">
           <svg class="icon"><use href="#i-download"/></svg>
-          免费下载
+          Download free
         </a>
-        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="打开菜单">
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
           <svg class="icon nav-toggle-open"><use href="#i-menu"/></svg>
           <svg class="icon nav-toggle-close"><use href="#i-close"/></svg>
         </button>
@@ -94,18 +94,18 @@
     </div>
 
     <div class="mobile-nav" id="mobileNav">
-      <nav aria-label="移动端导航">
-        <a href="#find">查找声音</a>
-        <a href="#ucs">UCS 整理</a>
-        <a href="#metadata">元数据与交付</a>
+      <nav aria-label="Mobile navigation">
+        <a href="#find">Find sounds</a>
+        <a href="#ucs">UCS</a>
+        <a href="#metadata">Metadata &amp; delivery</a>
         <a href="#reaper">Reaper</a>
-        <a href="#plans">免费版与 Pro</a>
+        <a href="#plans">Free &amp; Pro</a>
       </nav>
       <a href="#download" class="btn btn-primary btn-block">
         <svg class="icon"><use href="#i-download"/></svg>
-        免费下载
+        Download free
       </a>
-      <p class="mobile-nav-note">本地运行 · 素材留在自己电脑中</p>
+      <p class="mobile-nav-note">Runs locally · Assets stay on your computer</p>
     </div>
   </header>
 
@@ -117,33 +117,33 @@
         <div class="hero-copy">
           <span class="pill pill-amber">
             <span class="pulse-dot"></span>
-            为音效设计师打造的本地音效库管理工具
+            A local sound library manager for sound designers
           </span>
 
           <h1>
-            找到需要的声音，<br>
-            <span class="text-gradient">专注于创作。</span>
+            Find the sound you need,<br>
+            <span class="text-gradient">stay focused on creating.</span>
           </h1>
 
           <p class="hero-sub">
-            Hertz Sync Sound Design 帮你搜索、试听和整理音效库，让素材从硬盘顺畅进入你的项目。
+            Hertz Sync Sound Design helps you search, audition and organize your sound libraries, so assets move smoothly from your drive into your projects.
           </p>
 
           <div class="hero-cta">
             <a href="#download" class="btn btn-primary btn-lg">
               <svg class="icon"><use href="#i-download"/></svg>
-              免费下载
+              Download free
             </a>
             <a href="#find" class="btn btn-ghost btn-lg">
-              了解功能
+              See features
               <svg class="icon"><use href="#i-arrow-right"/></svg>
             </a>
           </div>
 
           <p class="hero-fineprint">
-            <span><svg class="icon"><use href="#i-lock"/></svg> 本地运行，素材留在自己电脑中</span>
-            <span><svg class="icon"><use href="#i-search"/></svg> 关键词、同义词与 UCS 搜索</span>
-            <span><svg class="icon"><use href="#i-monitor"/></svg> Windows 10 及以上</span>
+            <span><svg class="icon"><use href="#i-lock"/></svg> Runs locally, assets stay on your computer</span>
+            <span><svg class="icon"><use href="#i-search"/></svg> Keyword, synonym and UCS search</span>
+            <span><svg class="icon"><use href="#i-monitor"/></svg> Windows 10 and above</span>
           </p>
         </div>
 
@@ -153,35 +153,35 @@
             <div class="chrome-dots" aria-hidden="true"><span></span><span></span><span></span></div>
             <div class="chrome-path">
               <svg class="icon"><use href="#i-folder"/></svg>
-              Hertz Sync — 音效库
+              Hertz Sync — Sound Library
             </div>
-            <div class="chrome-count">1,231 个声音 · 本地索引</div>
+            <div class="chrome-count">1,231 sounds · local index</div>
           </div>
 
           <div class="app-body">
             <aside class="app-side">
               <div class="app-side-group">
-                <p class="app-label">工作区</p>
+                <p class="app-label">Workspace</p>
                 <button class="app-nav is-active" data-view="search" type="button">
                   <svg class="icon"><use href="#i-search"/></svg>
-                  <span>搜索</span>
+                  <span>Search</span>
                 </button>
                 <button class="app-nav" data-view="review" type="button">
                   <svg class="icon"><use href="#i-sparkles"/></svg>
-                  <span>UCS 审核</span>
+                  <span>UCS review</span>
                   <em class="pill-count" data-suggestion-badge>188</em>
                 </button>
                 <button class="app-nav" data-view="meta" type="button">
                   <svg class="icon"><use href="#i-sliders"/></svg>
-                  <span>元数据</span>
+                  <span>Metadata</span>
                 </button>
                 <button class="app-nav" data-view="send" type="button">
                   <svg class="icon"><use href="#i-send"/></svg>
-                  <span>发送到 Reaper</span>
+                  <span>Send to Reaper</span>
                 </button>
               </div>
               <div class="app-side-group app-side-tools">
-                <p class="app-label">素材来源</p>
+                <p class="app-label">Sources</p>
                 <div class="app-tool">
                   <svg class="icon"><use href="#i-folder"/></svg> /SFX Library
                 </div>
@@ -191,206 +191,206 @@
               </div>
               <div class="app-side-status">
                 <span class="status-dot"></span>
-                本地索引运行中 · 0 KB 上传
+                Local index running · 0 KB uploaded
               </div>
             </aside>
 
             <div class="app-main">
               <!-- Search -->
-              <section class="app-view is-active" data-panel="search" aria-label="搜索声音">
+              <section class="app-view is-active" data-panel="search" aria-label="Search sounds">
                 <div class="app-view-head">
                   <div>
-                    <h2>搜索声音</h2>
-                    <p>关键词、同义词与 UCS 分类同时匹配</p>
+                    <h2>Search sounds</h2>
+                    <p>Matches keywords, synonyms and UCS categories</p>
                   </div>
-                  <span class="chip chip-quiet">1,231 个声音</span>
+                  <span class="chip chip-quiet">1,231 sounds</span>
                 </div>
 
                 <div class="search-bar">
                   <svg class="icon"><use href="#i-search"/></svg>
-                  <input id="demoSearch" type="search" placeholder="搜索关键词、同义词或 UCS 分类…" aria-label="搜索关键词、同义词或 UCS 分类" autocomplete="off">
+                  <input id="demoSearch" type="search" placeholder="Search keywords, synonyms or UCS categories…" aria-label="Search keywords, synonyms or UCS categories" autocomplete="off">
                   <span class="search-key mono">/</span>
                 </div>
 
-                <div class="filter-chips" role="group" aria-label="按类别筛选">
-                  <button class="filter-chip is-active" type="button" data-filter="all">全部</button>
-                  <button class="filter-chip" type="button" data-filter="amb">环境声</button>
-                  <button class="filter-chip" type="button" data-filter="foley">拟音</button>
-                  <button class="filter-chip" type="button" data-filter="ui">界面</button>
-                  <button class="filter-chip" type="button" data-filter="mech">机械</button>
+                <div class="filter-chips" role="group" aria-label="Filter by category">
+                  <button class="filter-chip is-active" type="button" data-filter="all">All</button>
+                  <button class="filter-chip" type="button" data-filter="amb">Ambience</button>
+                  <button class="filter-chip" type="button" data-filter="foley">Foley</button>
+                  <button class="filter-chip" type="button" data-filter="ui">UI</button>
+                  <button class="filter-chip" type="button" data-filter="mech">Mechanical</button>
                 </div>
 
                 <div class="sound-list" id="searchList">
-                  <div class="sound-row result-row" data-cat="amb" data-search="rain roof weather 雨声 屋顶 环境">
-                    <button class="row-play" type="button" data-sound="AMBWeather_Rain_Roof_Heavy_03.wav" aria-label="试听 AMBWeather_Rain_Roof_Heavy_03">
+                  <div class="sound-row result-row" data-cat="amb" data-search="rain roof weather rainfall ambience">
+                    <button class="row-play" type="button" data-sound="AMBWeather_Rain_Roof_Heavy_03.wav" aria-label="Preview AMBWeather_Rain_Roof_Heavy_03">
                       <svg class="icon icon-play"><use href="#i-play"/></svg>
                       <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                     </button>
                     <div class="row-meta"><strong>AMBWeather_Rain_Roof_Heavy_03.wav</strong><span>… › Ambience › Weather</span></div>
                     <span class="row-wave" aria-hidden="true"></span>
-                    <div class="row-tag"><b>AMBWeather</b><small>环境 › 天气 › 雨</small></div>
+                    <div class="row-tag"><b>AMBWeather</b><small>Ambience › Weather › Rain</small></div>
                     <span class="row-len">0:03:12</span>
-                    <button class="row-fav" type="button" aria-label="收藏" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
+                    <button class="row-fav" type="button" aria-label="Add to favorites" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
                   </div>
 
-                  <div class="sound-row result-row" data-cat="amb" data-search="rain forest soft weather 雨声 森林 环境">
-                    <button class="row-play" type="button" data-sound="AMBWeather_Rain_Forest_Soft_07.wav" aria-label="试听 AMBWeather_Rain_Forest_Soft_07">
+                  <div class="sound-row result-row" data-cat="amb" data-search="rain forest soft weather rainfall ambience">
+                    <button class="row-play" type="button" data-sound="AMBWeather_Rain_Forest_Soft_07.wav" aria-label="Preview AMBWeather_Rain_Forest_Soft_07">
                       <svg class="icon icon-play"><use href="#i-play"/></svg>
                       <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                     </button>
                     <div class="row-meta"><strong>AMBWeather_Rain_Forest_Soft_07.wav</strong><span>… › Ambience › Forest</span></div>
                     <span class="row-wave" aria-hidden="true"></span>
-                    <div class="row-tag"><b>AMBWeather</b><small>环境 › 天气 › 雨</small></div>
+                    <div class="row-tag"><b>AMBWeather</b><small>Ambience › Weather › Rain</small></div>
                     <span class="row-len">0:02:48</span>
-                    <button class="row-fav" type="button" aria-label="收藏" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
+                    <button class="row-fav" type="button" aria-label="Add to favorites" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
                   </div>
 
-                  <div class="sound-row result-row" data-cat="foley" data-search="jacket cloth move foley 拟音 布料">
-                    <button class="row-play" type="button" data-sound="FOLEYCloth_Jacket_Move_01.wav" aria-label="试听 FOLEYCloth_Jacket_Move_01">
+                  <div class="sound-row result-row" data-cat="foley" data-search="jacket cloth move foley clothing">
+                    <button class="row-play" type="button" data-sound="FOLEYCloth_Jacket_Move_01.wav" aria-label="Preview FOLEYCloth_Jacket_Move_01">
                       <svg class="icon icon-play"><use href="#i-play"/></svg>
                       <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                     </button>
                     <div class="row-meta"><strong>FOLEYCloth_Jacket_Move_01.wav</strong><span>… › Foley › Cloth</span></div>
                     <span class="row-wave" aria-hidden="true"></span>
-                    <div class="row-tag"><b>FOLEYCloth</b><small>拟音 › 布料</small></div>
+                    <div class="row-tag"><b>FOLEYCloth</b><small>Foley › Cloth</small></div>
                     <span class="row-len">0:00:06</span>
-                    <button class="row-fav" type="button" aria-label="收藏" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
+                    <button class="row-fav" type="button" aria-label="Add to favorites" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
                   </div>
 
-                  <div class="sound-row result-row" data-cat="ui" data-search="beep confirm interface ui 界面 提示">
-                    <button class="row-play" type="button" data-sound="UIBeep_Confirm_02.wav" aria-label="试听 UIBeep_Confirm_02">
+                  <div class="sound-row result-row" data-cat="ui" data-search="beep confirm interface user interface notification">
+                    <button class="row-play" type="button" data-sound="UIBeep_Confirm_02.wav" aria-label="Preview UIBeep_Confirm_02">
                       <svg class="icon icon-play"><use href="#i-play"/></svg>
                       <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                     </button>
                     <div class="row-meta"><strong>UIBeep_Confirm_02.wav</strong><span>… › User Interface › Beep</span></div>
                     <span class="row-wave" aria-hidden="true"></span>
-                    <div class="row-tag"><b>UIBeep</b><small>界面 › 提示</small></div>
+                    <div class="row-tag"><b>UIBeep</b><small>UI › Beep</small></div>
                     <span class="row-len">0:00:01</span>
-                    <button class="row-fav" type="button" aria-label="收藏" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
+                    <button class="row-fav" type="button" aria-label="Add to favorites" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
                   </div>
 
-                  <div class="sound-row result-row" data-cat="mech" data-search="servo whine loop machine 机械 伺服">
-                    <button class="row-play" type="button" data-sound="MECHServo_Whine_Loop_04.wav" aria-label="试听 MECHServo_Whine_Loop_04">
+                  <div class="sound-row result-row" data-cat="mech" data-search="servo whine loop machine mechanical">
+                    <button class="row-play" type="button" data-sound="MECHServo_Whine_Loop_04.wav" aria-label="Preview MECHServo_Whine_Loop_04">
                       <svg class="icon icon-play"><use href="#i-play"/></svg>
                       <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                     </button>
                     <div class="row-meta"><strong>MECHServo_Whine_Loop_04.wav</strong><span>… › Machines › Servo</span></div>
                     <span class="row-wave" aria-hidden="true"></span>
-                    <div class="row-tag"><b>MECHServo</b><small>机械 › 伺服</small></div>
+                    <div class="row-tag"><b>MECHServo</b><small>Machines › Servo</small></div>
                     <span class="row-len">0:00:08</span>
-                    <button class="row-fav" type="button" aria-label="收藏" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
+                    <button class="row-fav" type="button" aria-label="Add to favorites" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
                   </div>
                 </div>
-                <p class="app-empty" id="searchEmpty" hidden>没有匹配的声音，换个关键词试试。</p>
+                <p class="app-empty" id="searchEmpty" hidden>No matching sounds. Try another keyword.</p>
               </section>
 
               <!-- Review -->
-              <section class="app-view" data-panel="review" aria-label="UCS 建议审核">
+              <section class="app-view" data-panel="review" aria-label="UCS suggestion review">
                 <div class="app-view-head">
                   <div>
-                    <h2>UCS 建议 <span class="chip chip-amber">待审核</span></h2>
-                    <p>为未分类素材提供建议，确认后才写入。</p>
+                    <h2>UCS suggestions <span class="chip chip-amber">To review</span></h2>
+                    <p>Suggestions for unclassified assets. Nothing is written until you confirm.</p>
                   </div>
                   <button class="btn btn-primary btn-sm" type="button" id="acceptAll">
                     <svg class="icon"><use href="#i-check"/></svg>
-                    接受全部 <span data-suggestion-count>188</span> 条
+                    Accept all <span data-suggestion-count>188</span>
                   </button>
                 </div>
 
                 <div class="sound-list review-list" id="reviewList">
                   <div class="sound-row review-row">
-                    <button class="row-play" type="button" data-sound="AMBWeather_Rain_Roof_Heavy_03.wav" aria-label="试听 AMBWeather_Rain_Roof_Heavy_03">
+                    <button class="row-play" type="button" data-sound="AMBWeather_Rain_Roof_Heavy_03.wav" aria-label="Preview AMBWeather_Rain_Roof_Heavy_03">
                       <svg class="icon icon-play"><use href="#i-play"/></svg>
                       <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                     </button>
                     <div class="row-meta"><strong>AMBWeather_Rain_Roof_Heavy_03.wav</strong><span>… › Ambience › Weather</span></div>
-                    <div class="row-tag"><b>AMBWeather</b><small>环境 › 天气 › 雨</small></div>
+                    <div class="row-tag"><b>AMBWeather</b><small>Ambience › Weather › Rain</small></div>
                     <button class="btn-accept" type="button" data-accept>
-                      <svg class="icon"><use href="#i-check"/></svg> 接受
+                      <svg class="icon"><use href="#i-check"/></svg> Accept
                     </button>
                   </div>
                   <div class="sound-row review-row">
-                    <button class="row-play" type="button" data-sound="FOLEYCloth_Jacket_Move_01.wav" aria-label="试听 FOLEYCloth_Jacket_Move_01">
+                    <button class="row-play" type="button" data-sound="FOLEYCloth_Jacket_Move_01.wav" aria-label="Preview FOLEYCloth_Jacket_Move_01">
                       <svg class="icon icon-play"><use href="#i-play"/></svg>
                       <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                     </button>
                     <div class="row-meta"><strong>FOLEYCloth_Jacket_Move_01.wav</strong><span>… › Foley › Cloth</span></div>
-                    <div class="row-tag"><b>FOLEYCloth</b><small>拟音 › 布料</small></div>
+                    <div class="row-tag"><b>FOLEYCloth</b><small>Foley › Cloth</small></div>
                     <button class="btn-accept" type="button" data-accept>
-                      <svg class="icon"><use href="#i-check"/></svg> 接受
+                      <svg class="icon"><use href="#i-check"/></svg> Accept
                     </button>
                   </div>
                   <div class="sound-row review-row">
-                    <button class="row-play" type="button" data-sound="MECHServo_Whine_Loop_04.wav" aria-label="试听 MECHServo_Whine_Loop_04">
+                    <button class="row-play" type="button" data-sound="MECHServo_Whine_Loop_04.wav" aria-label="Preview MECHServo_Whine_Loop_04">
                       <svg class="icon icon-play"><use href="#i-play"/></svg>
                       <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                     </button>
                     <div class="row-meta"><strong>MECHServo_Whine_Loop_04.wav</strong><span>… › Machines › Servo</span></div>
-                    <div class="row-tag"><b>MECHServo</b><small>机械 › 伺服</small></div>
+                    <div class="row-tag"><b>MECHServo</b><small>Machines › Servo</small></div>
                     <button class="btn-accept" type="button" data-accept>
-                      <svg class="icon"><use href="#i-check"/></svg> 接受
+                      <svg class="icon"><use href="#i-check"/></svg> Accept
                     </button>
                   </div>
                   <div class="sound-row review-row">
-                    <button class="row-play" type="button" data-sound="UIBeep_Confirm_02.wav" aria-label="试听 UIBeep_Confirm_02">
+                    <button class="row-play" type="button" data-sound="UIBeep_Confirm_02.wav" aria-label="Preview UIBeep_Confirm_02">
                       <svg class="icon icon-play"><use href="#i-play"/></svg>
                       <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                     </button>
                     <div class="row-meta"><strong>UIBeep_Confirm_02.wav</strong><span>… › User Interface › Beep</span></div>
-                    <div class="row-tag"><b>UIBeep</b><small>界面 › 提示</small></div>
+                    <div class="row-tag"><b>UIBeep</b><small>UI › Beep</small></div>
                     <button class="btn-accept" type="button" data-accept>
-                      <svg class="icon"><use href="#i-check"/></svg> 接受
+                      <svg class="icon"><use href="#i-check"/></svg> Accept
                     </button>
                   </div>
                 </div>
               </section>
 
               <!-- Metadata -->
-              <section class="app-view" data-panel="meta" aria-label="编辑元数据">
+              <section class="app-view" data-panel="meta" aria-label="Edit metadata">
                 <div class="app-view-head">
                   <div>
-                    <h2>编辑元数据</h2>
-                    <p>WAV 元数据与 CSV 信息集中管理。</p>
+                    <h2>Edit metadata</h2>
+                    <p>Manage WAV metadata and CSV information in one place.</p>
                   </div>
                   <span class="chip chip-quiet">WAV</span>
                 </div>
 
                 <div class="meta-form">
                   <label class="meta-field">
-                    <span>文件名</span>
+                    <span>File name</span>
                     <input value="AMBWeather_Rain_Roof_Heavy_03.wav" readonly>
                   </label>
                   <label class="meta-field">
-                    <span>分类</span>
+                    <span>Category</span>
                     <input value="AMBWeather">
                   </label>
                   <label class="meta-field">
-                    <span>描述</span>
+                    <span>Description</span>
                     <input value="Heavy rain on a metal roof">
                   </label>
                   <div class="meta-field-row">
-                    <label class="meta-field"><span>采样率</span><input value="96 kHz"></label>
-                    <label class="meta-field"><span>位深</span><input value="24-bit"></label>
-                    <label class="meta-field"><span>响度</span><input value="-23 LUFS"></label>
+                    <label class="meta-field"><span>Sample rate</span><input value="96 kHz"></label>
+                    <label class="meta-field"><span>Bit depth</span><input value="24-bit"></label>
+                    <label class="meta-field"><span>Loudness</span><input value="-23 LUFS"></label>
                   </div>
                 </div>
 
                 <div class="app-actions">
                   <button class="btn btn-primary btn-sm" type="button" data-meta-save>
-                    <svg class="icon"><use href="#i-check"/></svg> 保存元数据
+                    <svg class="icon"><use href="#i-check"/></svg> Save metadata
                   </button>
                   <button class="btn btn-ghost btn-sm" type="button" data-csv>
-                    <svg class="icon"><use href="#i-file"/></svg> 写入 CSV
+                    <svg class="icon"><use href="#i-file"/></svg> Write CSV
                   </button>
                 </div>
               </section>
 
               <!-- Send to Reaper -->
-              <section class="app-view" data-panel="send" aria-label="发送到 Reaper">
+              <section class="app-view" data-panel="send" aria-label="Send to Reaper">
                 <div class="app-view-head">
                   <div>
-                    <h2>发送到 Reaper</h2>
-                    <p>文件送到编辑光标位置，或按类别创建分轨工程。</p>
+                    <h2>Send to Reaper</h2>
+                    <p>Deliver files to the edit cursor, or build a project with tracks by category.</p>
                   </div>
                   <span class="chip chip-amber">Reaper</span>
                 </div>
@@ -406,28 +406,28 @@
                 <div class="send-options">
                   <button class="send-option" type="button" data-send="cursor">
                     <svg class="icon"><use href="#i-send"/></svg>
-                    <span><strong>发送到编辑光标</strong><small>插入到当前光标位置</small></span>
+                    <span><strong>Send to edit cursor</strong><small>Insert at the current cursor position</small></span>
                   </button>
                   <button class="send-option" type="button" data-send="tracks">
                     <svg class="icon"><use href="#i-grid"/></svg>
-                    <span><strong>按类别创建分轨工程</strong><small>每个 UCS 类别一条轨道</small></span>
+                    <span><strong>Create track project</strong><small>One track per UCS category</small></span>
                   </button>
                 </div>
 
-                <p class="send-note mono">目标：Reaper · 编辑光标 00:12.480</p>
+                <p class="send-note mono">Target: Reaper · Edit cursor 00:12.480</p>
               </section>
             </div>
           </div>
 
           <!-- Player -->
           <div class="app-player">
-            <button class="btn-master" id="masterPlay" type="button" aria-label="播放或暂停试听">
+            <button class="btn-master" id="masterPlay" type="button" aria-label="Play or pause audition">
               <svg class="icon icon-play"><use href="#i-play"/></svg>
               <svg class="icon icon-pause"><use href="#i-pause"/></svg>
             </button>
             <div class="player-info">
-              <strong id="playerTitle">未在试听</strong>
-              <small id="playerHint">点击任意声音的 <span class="mono">▶</span> 试听</small>
+              <strong id="playerTitle">Nothing playing</strong>
+              <small id="playerHint">Press <span class="mono">▶</span> on any sound to audition</small>
             </div>
             <div class="player-track" aria-hidden="true">
               <div class="player-progress" id="playerProgress"></div>
@@ -445,23 +445,23 @@
     <section class="section section-feature" id="find">
       <div class="container feature-split">
         <div class="feature-copy" data-reveal>
-          <span class="eyebrow">核心功能 01 · 查找声音</span>
-          <h2>你的音效库，<br class="br-desktop">更容易找到。</h2>
+          <span class="eyebrow">Core feature 01 · Find sounds</span>
+          <h2>Your sound library,<br class="br-desktop"> easier to find.</h2>
           <p>
-            将多个素材文件夹集中管理，通过关键词、同义词和 UCS 分类查找声音，试听波形，收藏常用素材。
+            Manage multiple asset folders in one place. Search by keyword, synonym and UCS category, audition waveforms, and favorite the sounds you use often.
           </p>
           <div class="feature-tags">
-            <span><svg class="icon"><use href="#i-folder"/></svg> 多文件夹集中管理</span>
-            <span><svg class="icon"><use href="#i-search"/></svg> 关键词与同义词</span>
-            <span><svg class="icon"><use href="#i-star"/></svg> 收藏常用素材</span>
+            <span><svg class="icon"><use href="#i-folder"/></svg> Multiple folders</span>
+            <span><svg class="icon"><use href="#i-search"/></svg> Keywords and synonyms</span>
+            <span><svg class="icon"><use href="#i-star"/></svg> Favorites</span>
           </div>
         </div>
 
         <div class="feature-visual" data-reveal style="--delay:.08s">
           <div class="panel search-demo" id="searchDemo">
             <div class="panel-head">
-              <span class="panel-title"><svg class="icon"><use href="#i-search"/></svg> 搜索</span>
-              <span class="chip chip-quiet">3 个结果</span>
+              <span class="panel-title"><svg class="icon"><use href="#i-search"/></svg> Search</span>
+              <span class="chip chip-quiet">3 results</span>
             </div>
 
             <div class="demo-search">
@@ -471,42 +471,42 @@
             </div>
 
             <div class="synonym-row">
-              <span>同义词</span>
-              <b>rain</b><b>雨声</b><b>roof</b><b>AMBWeather</b>
+              <span>Synonyms</span>
+              <b>rain</b><b>rainfall</b><b>roof</b><b>AMBWeather</b>
             </div>
 
             <div class="demo-results">
               <div class="demo-result is-current">
-                <button class="row-play" type="button" data-demo-play aria-label="试听结果">
+                <button class="row-play" type="button" data-demo-play aria-label="Preview result">
                   <svg class="icon icon-play"><use href="#i-play"/></svg>
                   <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                 </button>
                 <div class="row-meta"><strong>AMBWeather_Rain_Roof_Heavy_03.wav</strong><span>Ambience › Weather › Rain</span></div>
                 <span class="row-wave" aria-hidden="true"></span>
-                <button class="row-fav is-fav" type="button" aria-label="取消收藏" aria-pressed="true"><svg class="icon"><use href="#i-star"/></svg></button>
+                <button class="row-fav is-fav" type="button" aria-label="Remove from favorites" aria-pressed="true"><svg class="icon"><use href="#i-star"/></svg></button>
               </div>
               <div class="demo-result">
-                <button class="row-play" type="button" data-demo-play aria-label="试听结果">
+                <button class="row-play" type="button" data-demo-play aria-label="Preview result">
                   <svg class="icon icon-play"><use href="#i-play"/></svg>
                   <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                 </button>
                 <div class="row-meta"><strong>AMBWeather_Rain_Metal_Roof_11.wav</strong><span>Ambience › Weather › Rain</span></div>
                 <span class="row-wave" aria-hidden="true"></span>
-                <button class="row-fav" type="button" aria-label="收藏" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
+                <button class="row-fav" type="button" aria-label="Add to favorites" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
               </div>
               <div class="demo-result">
-                <button class="row-play" type="button" data-demo-play aria-label="试听结果">
+                <button class="row-play" type="button" data-demo-play aria-label="Preview result">
                   <svg class="icon icon-play"><use href="#i-play"/></svg>
                   <svg class="icon icon-pause"><use href="#i-pause"/></svg>
                 </button>
                 <div class="row-meta"><strong>AMBWeather_Rain_Window_Soft_02.wav</strong><span>Ambience › Weather › Rain</span></div>
                 <span class="row-wave" aria-hidden="true"></span>
-                <button class="row-fav" type="button" aria-label="收藏" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
+                <button class="row-fav" type="button" aria-label="Add to favorites" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg></button>
               </div>
             </div>
 
             <div class="demo-player">
-              <button class="demo-play-btn" id="demoPlay" type="button" aria-label="播放波形试听">
+              <button class="demo-play-btn" id="demoPlay" type="button" aria-label="Play waveform audition">
                 <svg class="icon icon-play"><use href="#i-play"/></svg>
                 <svg class="icon icon-pause"><use href="#i-pause"/></svg>
               </button>
@@ -524,32 +524,32 @@
     <section class="section section-feature section-alt" id="ucs">
       <div class="container feature-split feature-split-reverse">
         <div class="feature-copy" data-reveal>
-          <span class="eyebrow">核心功能 02 · UCS 整理</span>
-          <h2>让音效分类<br class="br-desktop">更清晰。</h2>
+          <span class="eyebrow">Core feature 02 · UCS organization</span>
+          <h2>Keep your categories<br class="br-desktop"> clear.</h2>
           <p>
-            识别已有的 UCS 命名，为未分类素材提供建议；你可以审核、修改并批量命名，让素材库保持统一。
+            Recognizes existing UCS names and suggests categories for unclassified assets. Review, edit and batch-rename so the library stays consistent.
           </p>
           <p class="feature-note">
             <svg class="icon"><use href="#i-check-circle"/></svg>
-            分类以建议形式呈现，审核确认后才会写入。
+            Suggestions only. Nothing is written until you approve it.
           </p>
         </div>
 
         <div class="feature-visual" data-reveal style="--delay:.08s">
           <div class="panel ucs-demo">
             <div class="panel-head">
-              <span class="panel-title"><svg class="icon"><use href="#i-tag"/></svg> UCS 审核</span>
-              <span class="chip chip-amber">待确认</span>
+              <span class="panel-title"><svg class="icon"><use href="#i-tag"/></svg> UCS review</span>
+              <span class="chip chip-amber">Pending</span>
             </div>
 
-            <div class="ucs-path" aria-label="UCS 分类路径">
+            <div class="ucs-path" aria-label="UCS category path">
               <span>AMBIENCE</span><i>›</i><span>WEATHER</span><i>›</i><b>RAIN</b>
             </div>
 
             <div class="ucs-suggest">
               <div class="ucs-source">
                 <strong>rain_roof_heavy_03.wav</strong>
-                <small>未分类 · 96 kHz / 24-bit</small>
+                <small>Unclassified · 96 kHz / 24-bit</small>
               </div>
               <span class="ucs-arrow" aria-hidden="true">
                 <svg class="icon"><use href="#i-arrow-right"/></svg>
@@ -562,10 +562,10 @@
 
             <div class="ucs-actions">
               <button class="btn btn-primary btn-sm" type="button" data-ucs-accept>
-                <svg class="icon"><use href="#i-check"/></svg> 接受建议
+                <svg class="icon"><use href="#i-check"/></svg> Accept suggestion
               </button>
-              <button class="btn btn-ghost btn-sm" type="button" data-toast="已打开分类编辑，可手动修改后批量命名。">
-                修改分类
+              <button class="btn btn-ghost btn-sm" type="button" data-toast="Category editor opened. Adjust the name, then batch-rename.">
+                Edit category
               </button>
             </div>
 
@@ -573,21 +573,21 @@
               <div class="ucs-item">
                 <span class="ucs-file">AMB_Forest_Birds_96k.wav</span>
                 <b>AMBForest</b>
-                <em>建议</em>
+                <em>Suggestion</em>
               </div>
               <div class="ucs-item">
                 <span class="ucs-file">Metal_Hit_02.wav</span>
                 <b>IMPACTMetal</b>
-                <em>建议</em>
+                <em>Suggestion</em>
               </div>
               <div class="ucs-item">
                 <span class="ucs-file">Footstep_Gravel_04.wav</span>
                 <b>FOLEYFootsteps</b>
-                <em>建议</em>
+                <em>Suggestion</em>
               </div>
             </div>
 
-            <p class="panel-note">已有 UCS 命名的素材会被识别；未分类素材只提供建议。</p>
+            <p class="panel-note">Assets that already follow UCS naming are recognized. Unclassified assets receive suggestions only.</p>
           </div>
         </div>
       </div>
@@ -597,37 +597,37 @@
     <section class="section section-feature" id="metadata">
       <div class="container feature-split">
         <div class="feature-copy" data-reveal>
-          <span class="eyebrow">核心功能 03 · 元数据与交付</span>
-          <h2>从素材整理<br class="br-desktop">到项目交付。</h2>
+          <span class="eyebrow">Core feature 03 · Metadata and delivery</span>
+          <h2>From library cleanup<br class="br-desktop"> to delivery.</h2>
           <p>
-            编辑 WAV 元数据，通过 CSV 批量管理信息；需要交付时，批量重命名、调整响度、采样率和格式。
+            Edit WAV metadata and manage information through CSV. When it is time to deliver, batch-rename and adjust loudness, sample rate and format.
           </p>
           <div class="feature-tags">
-            <span><svg class="icon"><use href="#i-file"/></svg> WAV 元数据</span>
-            <span><svg class="icon"><use href="#i-grid"/></svg> CSV 批量管理</span>
-            <span><svg class="icon"><use href="#i-sliders"/></svg> 交付前批处理</span>
+            <span><svg class="icon"><use href="#i-file"/></svg> WAV metadata</span>
+            <span><svg class="icon"><use href="#i-grid"/></svg> CSV batch management</span>
+            <span><svg class="icon"><use href="#i-sliders"/></svg> Pre-delivery processing</span>
           </div>
         </div>
 
         <div class="feature-visual" data-reveal style="--delay:.08s">
           <div class="panel meta-demo">
             <div class="panel-head">
-              <span class="panel-title"><svg class="icon"><use href="#i-file"/></svg> 元数据</span>
+              <span class="panel-title"><svg class="icon"><use href="#i-file"/></svg> Metadata</span>
               <span class="file-chip">rain_roof_heavy_03.wav</span>
             </div>
 
             <div class="meta-grid">
-              <div class="meta-cell"><span>分类</span><strong>AMBWeather</strong></div>
-              <div class="meta-cell"><span>描述</span><strong>Heavy rain on a metal roof</strong></div>
-              <div class="meta-cell"><span>采样率</span><strong>96 kHz</strong></div>
-              <div class="meta-cell"><span>位深</span><strong>24-bit</strong></div>
-              <div class="meta-cell"><span>响度</span><strong>-23 LUFS</strong></div>
-              <div class="meta-cell"><span>格式</span><strong>WAV</strong></div>
+              <div class="meta-cell"><span>Category</span><strong>AMBWeather</strong></div>
+              <div class="meta-cell"><span>Description</span><strong>Heavy rain on a metal roof</strong></div>
+              <div class="meta-cell"><span>Sample rate</span><strong>96 kHz</strong></div>
+              <div class="meta-cell"><span>Bit depth</span><strong>24-bit</strong></div>
+              <div class="meta-cell"><span>Loudness</span><strong>-23 LUFS</strong></div>
+              <div class="meta-cell"><span>Format</span><strong>WAV</strong></div>
             </div>
 
             <div class="deliver-compare">
               <div class="deliver-col">
-                <span>处理前</span>
+                <span>Before</span>
                 <code>rain_roof_heavy_03.wav</code>
                 <small>48 kHz · WAV</small>
               </div>
@@ -635,14 +635,14 @@
                 <svg class="icon"><use href="#i-arrow-right"/></svg>
               </span>
               <div class="deliver-col is-after">
-                <span>交付</span>
+                <span>Delivery</span>
                 <code>AMBWeather_Rain_Roof_Heavy_03.wav</code>
                 <small>96 kHz · -23 LUFS</small>
               </div>
             </div>
 
             <div class="batch-chips">
-              <span>批量重命名</span><span>响度</span><span>采样率</span><span>格式</span><span>CSV 清单</span>
+              <span>Batch rename</span><span>Loudness</span><span>Sample rate</span><span>Format</span><span>CSV list</span>
             </div>
           </div>
         </div>
@@ -653,14 +653,14 @@
     <section class="section section-feature section-alt" id="reaper">
       <div class="container feature-split feature-split-reverse">
         <div class="feature-copy" data-reveal>
-          <span class="eyebrow">核心功能 04 · 送入 Reaper</span>
-          <h2>找到声音，<br class="br-desktop">直接放进项目。</h2>
+          <span class="eyebrow">Core feature 04 · Reaper handoff</span>
+          <h2>Find a sound.<br class="br-desktop"> Drop it into the project.</h2>
           <p>
-            将选中的声音或波形片段送到 Reaper 的编辑光标位置，也可以创建按类别分轨的新工程。
+            Send selected sounds or waveform segments to the Reaper edit cursor, or create a new project with tracks split by category.
           </p>
           <div class="feature-tags">
-            <span><svg class="icon"><use href="#i-send"/></svg> 发送到编辑光标</span>
-            <span><svg class="icon"><use href="#i-grid"/></svg> 按类别分轨</span>
+            <span><svg class="icon"><use href="#i-send"/></svg> Send to edit cursor</span>
+            <span><svg class="icon"><use href="#i-grid"/></svg> Tracks by category</span>
           </div>
         </div>
 
@@ -668,7 +668,7 @@
           <div class="panel reaper-demo" id="reaperDemo">
             <div class="panel-head">
               <span class="panel-title"><svg class="icon"><use href="#i-send"/></svg> Hertz Sync → Reaper</span>
-              <span class="mono reaper-cursor">编辑光标 00:12.480</span>
+              <span class="mono reaper-cursor">Edit cursor 00:12.480</span>
             </div>
 
             <div class="reaper-ruler" aria-hidden="true">
@@ -677,19 +677,19 @@
 
             <div class="reaper-tracks">
               <div class="reaper-track">
-                <span class="track-label">环境声</span>
+                <span class="track-label">Ambience</span>
                 <div class="track-lane">
                   <i class="reaper-clip clip-amb">AMBWeather_Rain_Roof_Heavy</i>
                 </div>
               </div>
               <div class="reaper-track">
-                <span class="track-label">拟音</span>
+                <span class="track-label">Foley</span>
                 <div class="track-lane">
                   <i class="reaper-clip clip-foley">FOLEYCloth_Jacket_Move</i>
                 </div>
               </div>
               <div class="reaper-track">
-                <span class="track-label">音乐</span>
+                <span class="track-label">Music</span>
                 <div class="track-lane">
                   <i class="reaper-clip clip-music">SCORE_Underscore_Loop</i>
                 </div>
@@ -699,10 +699,10 @@
 
             <div class="reaper-actions">
               <button class="btn btn-primary btn-sm" type="button" data-send="cursor">
-                <svg class="icon"><use href="#i-send"/></svg> 发送到编辑光标
+                <svg class="icon"><use href="#i-send"/></svg> Send to edit cursor
               </button>
               <button class="btn btn-ghost btn-sm" type="button" data-send="tracks">
-                <svg class="icon"><use href="#i-grid"/></svg> 创建分轨工程
+                <svg class="icon"><use href="#i-grid"/></svg> Create track project
               </button>
             </div>
           </div>
@@ -714,30 +714,30 @@
     <section class="section section-compact" id="more">
       <div class="container">
         <header class="section-head" data-reveal>
-          <span class="eyebrow">其他功能</span>
-          <h2>需要时再用，<span class="text-gradient">不打断整理。</span></h2>
+          <span class="eyebrow">Other tools</span>
+          <h2>A few more <span class="text-gradient">utilities.</span></h2>
         </header>
 
         <div class="mini-grid">
           <article class="mini-card" data-reveal>
             <svg class="icon"><use href="#i-copy"/></svg>
-            <span>重复与异常文件检查</span>
+            <span>Duplicate and problem file check</span>
           </article>
           <article class="mini-card" data-reveal style="--delay:.05s">
             <svg class="icon"><use href="#i-star"/></svg>
-            <span>收藏集与相似声音查找</span>
+            <span>Collections and similar sound search</span>
           </article>
           <article class="mini-card" data-reveal style="--delay:.1s">
             <svg class="icon"><use href="#i-waveform"/></svg>
-            <span>波形片段循环试听与导出</span>
+            <span>Loop audition and export for waveform segments</span>
           </article>
           <article class="mini-card" data-reveal style="--delay:.15s">
             <svg class="icon"><use href="#i-refresh"/></svg>
-            <span>文件夹重新定位</span>
+            <span>Relink folders</span>
           </article>
           <article class="mini-card" data-reveal style="--delay:.2s">
             <svg class="icon"><use href="#i-lock"/></svg>
-            <span>本地运行，素材留在自己电脑中</span>
+            <span>Runs locally, assets stay on your computer</span>
           </article>
         </div>
       </div>
@@ -747,44 +747,44 @@
     <section class="section section-plans" id="plans">
       <div class="container">
         <header class="section-head" data-reveal>
-          <span class="eyebrow">免费版与 Pro</span>
-          <h2>先免费整理，<span class="text-gradient">需要时再升级。</span></h2>
+          <span class="eyebrow">Free and Pro</span>
+          <h2>Start free. <span class="text-gradient">Upgrade when you need to.</span></h2>
         </header>
 
         <div class="plans-grid">
           <article class="plan-card" data-reveal>
-            <span class="plan-label">免费版</span>
-            <h3>整理你的音效库</h3>
-            <p class="plan-desc">从扫描、搜索到分类审核，先把素材库理顺。</p>
+            <span class="plan-label">Free</span>
+            <h3>Organize your library</h3>
+            <p class="plan-desc">Scan, search and review your library first.</p>
             <ul class="plan-list">
-              <li><svg class="icon"><use href="#i-check"/></svg> 扫描和管理音效库</li>
-              <li><svg class="icon"><use href="#i-check"/></svg> 搜索、试听和收藏</li>
-              <li><svg class="icon"><use href="#i-check"/></svg> UCS 分类与审核</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Scan and manage sound libraries</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Search, audition and favorites</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> UCS categories and review</li>
             </ul>
             <a href="#download" class="btn btn-primary btn-block">
-              <svg class="icon"><use href="#i-download"/></svg> 免费下载
+              <svg class="icon"><use href="#i-download"/></svg> Download free
             </a>
           </article>
 
           <article class="plan-card plan-card-pro" data-reveal style="--delay:.08s">
-            <span class="plan-badge">升级</span>
+            <span class="plan-badge">Upgrade</span>
             <span class="plan-label">Pro</span>
-            <h3>批量处理与交付</h3>
-            <p class="plan-desc">需要写出文件、批量交付或接入 Reaper 工作流时使用。</p>
+            <h3>Batch processing and delivery</h3>
+            <p class="plan-desc">For writing files, batch delivery and Reaper workflows.</p>
             <ul class="plan-list">
-              <li><svg class="icon"><use href="#i-check"/></svg> 音频处理与文件写出</li>
-              <li><svg class="icon"><use href="#i-check"/></svg> 批量处理与交付</li>
-              <li><svg class="icon"><use href="#i-check"/></svg> 元数据写入和片段导出</li>
-              <li><svg class="icon"><use href="#i-check"/></svg> Reaper 工作流</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Audio processing and file export</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Batch processing and delivery</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Metadata writing and segment export</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Reaper workflow</li>
             </ul>
-            <a href="mailto:hello@hertzsync.audio?subject=%E4%BA%86%E8%A7%A3%20Hertz%20Sync%20Pro" class="btn btn-ghost btn-block">
-              了解 Pro
+            <a href="mailto:hello@hertzsync.audio?subject=Learn%20about%20Hertz%20Sync%20Pro" class="btn btn-ghost btn-block">
+              Learn about Pro
               <svg class="icon"><use href="#i-arrow-right"/></svg>
             </a>
           </article>
         </div>
 
-        <p class="plans-note" data-reveal>价格与免费版容量以当前安装版内信息为准。</p>
+        <p class="plans-note" data-reveal>Pricing and free-tier capacity are shown in the current installer.</p>
       </div>
     </section>
 
@@ -793,17 +793,17 @@
       <div class="container">
         <div class="download-inner" data-reveal>
           <div class="download-copy">
-            <span class="eyebrow">免费下载</span>
-            <h2>让每个声音，<br class="br-desktop">都更容易被找到。</h2>
-            <p>本地运行，素材留在自己的电脑中。需要批量处理与交付时，再升级 Pro。</p>
+            <span class="eyebrow">Download</span>
+            <h2>Make every sound<br class="br-desktop"> easier to find.</h2>
+            <p>Runs locally, with your assets on your own computer. Upgrade to Pro when you need batch processing and delivery.</p>
           </div>
           <div class="download-actions">
             <button class="btn btn-primary btn-lg" type="button" data-download>
-              <svg class="icon"><use href="#i-download"/></svg> 免费下载
+              <svg class="icon"><use href="#i-download"/></svg> Download free
             </button>
             <span class="download-note">
               <svg class="icon"><use href="#i-monitor"/></svg>
-              Windows 10 及以上 · 无需上传素材
+              Windows 10 and above · No asset uploads
             </span>
           </div>
         </div>
@@ -819,42 +819,42 @@
           <span class="brand-mark"><svg viewBox="0 0 24 24" class="icon"><use href="#i-waveform"/></svg></span>
           <span class="brand-type"><strong>Hertz Sync</strong><small>Sound Design</small></span>
         </a>
-        <p>为音效设计师打造的本地音效库管理工具。</p>
+        <p>A local sound library manager built for sound designers.</p>
       </div>
 
       <div class="footer-col">
-        <h4>系统要求</h4>
-        <p>Windows 10 及以上</p>
-        <p>本地运行，素材不上传</p>
+        <h4>System requirements</h4>
+        <p>Windows 10 and above</p>
+        <p>Runs locally; no asset uploads</p>
       </div>
 
       <div class="footer-col">
-        <h4>帮助与联系</h4>
+        <h4>Help and contact</h4>
         <a href="mailto:hello@hertzsync.audio">hello@hertzsync.audio</a>
-        <p>使用问题与试用申请</p>
+        <p>Support and trial requests</p>
       </div>
 
       <div class="footer-col">
-        <h4>隐私政策</h4>
-        <p>素材与索引保存在本地，站点不收集音频内容。</p>
+        <h4>Privacy</h4>
+        <p>Assets and indexes stay on your device. The site does not collect audio content.</p>
       </div>
 
       <div class="footer-col">
-        <h4>许可条款</h4>
-        <p>© <span id="year">2026</span> Hertz Sync Audio Labs。保留所有权利。</p>
+        <h4>License</h4>
+        <p>© <span id="year">2026</span> Hertz Sync Audio Labs. All rights reserved.</p>
       </div>
     </div>
 
     <div class="container footer-bottom">
       <p>Hertz Sync Sound Design</p>
-      <p class="footer-tag mono">Windows · 本地索引 · Reaper</p>
+      <p class="footer-tag mono">Windows · Local index · Reaper</p>
     </div>
   </footer>
 
   <!-- Toast -->
   <div class="toast" id="toast" role="status" aria-live="polite">
     <span class="pulse-dot"></span>
-    <span id="toastMsg">操作完成</span>
+    <span id="toastMsg">Done</span>
   </div>
 
   <script src="assets/js/main.js"></script>

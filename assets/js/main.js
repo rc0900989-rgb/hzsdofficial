@@ -1,5 +1,5 @@
 /* ============================================================
-   Hertz Sync Sound Design — 交互
+   Hertz Sync Sound Design — interactions
    ============================================================ */
 (function () {
   'use strict';
@@ -107,7 +107,7 @@
     btn.addEventListener('click', function () {
       var on = btn.classList.toggle('is-fav');
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      btn.setAttribute('aria-label', on ? '取消收藏' : '收藏');
+      btn.setAttribute('aria-label', on ? 'Remove from favorites' : 'Add to favorites');
     });
   });
 
@@ -149,7 +149,7 @@
   var playerProgress = $('#playerProgress');
   var playerTime = $('#playerTime');
   var player = { name: null, playing: false, elapsed: 0, duration: 4.4, raf: null, last: 0 };
-  var defaultHint = '点击任意声音的 <span class="mono">▶</span> 试听';
+  var defaultHint = 'Press <span class="mono">▶</span> on any sound to audition';
 
   function fmt(sec) {
     var s = Math.floor(sec);
@@ -181,11 +181,11 @@
 
   function paintPlayer() {
     if (appWindow) appWindow.classList.toggle('is-playing', player.playing);
-    if (masterPlay) masterPlay.setAttribute('aria-label', player.playing ? '暂停试听' : '播放试听');
-    if (playerTitle) playerTitle.textContent = player.name || '未在试听';
+    if (masterPlay) masterPlay.setAttribute('aria-label', player.playing ? 'Pause audition' : 'Play audition');
+    if (playerTitle) playerTitle.textContent = player.name || 'Nothing playing';
     if (playerHint) {
       playerHint.innerHTML = player.playing
-        ? '本地模拟试听 · 不上传音频'
+        ? 'Simulated local audition · no audio uploaded'
         : defaultHint;
     }
     if (playerTime) playerTime.textContent = fmt(player.elapsed);
@@ -311,8 +311,8 @@
     list.insertAdjacentHTML('beforeend',
       '<div class="review-empty">' +
         '<svg class="icon"><use href="#i-check-circle"/></svg>' +
-        '<strong>审核队列已清空</strong>' +
-        '<span>建议已处理，所有修改都可以撤销</span>' +
+        '<strong>Review queue cleared</strong>' +
+        '<span>Suggestions processed. All changes can be undone.</span>' +
       '</div>');
   }
   function syncSuggestions() {
@@ -320,7 +320,7 @@
     $$('[data-suggestion-badge]').forEach(function (el) { el.textContent = suggestionCount; });
     var acceptAll = $('#acceptAll');
     if (acceptAll && suggestionCount <= 0) {
-      acceptAll.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> 已全部处理';
+      acceptAll.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> All done';
       acceptAll.disabled = true;
       acceptAll.style.opacity = '0.6';
       acceptAll.style.cursor = 'default';
@@ -335,7 +335,7 @@
       suggestionCount = Math.max(0, suggestionCount - 1);
       syncSuggestions();
       setTimeout(function () { row.remove(); maybeReviewEmpty(); }, 340);
-      showToast('已接受建议 — 分类保存在本地索引中。');
+      showToast('Suggestion accepted. The category is saved in the local index.');
     });
   });
 
@@ -353,7 +353,7 @@
       });
       suggestionCount = 0;
       syncSuggestions();
-      showToast('已接受全部 ' + total + ' 条建议，分类保存在本地索引中。');
+      showToast('Accepted all ' + total + ' suggestions. Categories are saved in the local index.');
     });
   }
 
@@ -362,21 +362,21 @@
     btn.addEventListener('click', function () {
       var box = btn.closest('.ucs-suggest');
       if (box) box.classList.add('is-accepted');
-      btn.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> 已接受建议';
+      btn.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> Suggestion accepted';
       btn.disabled = true;
-      showToast('建议已接受 — 可以继续修改或批量命名。');
+      showToast('Suggestion accepted. You can still edit or batch-rename.');
     });
   });
 
   /* ---------- Metadata actions ---------- */
   $$('[data-meta-save]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      showToast('元数据已保存到本地索引。');
+      showToast('Metadata saved to the local index.');
     });
   });
   $$('[data-csv]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      showToast('已写入 CSV 清单，可在批量管理中查看。');
+      showToast('CSV list written. Review it in batch management.');
     });
   });
 
@@ -392,8 +392,8 @@
       reaperTimer = setTimeout(function () { reaperDemo.classList.remove('is-sent'); }, 1200);
     }
     showToast(mode === 'tracks'
-      ? '已按 UCS 类别创建分轨工程。'
-      : '已发送到 Reaper 编辑光标位置。');
+      ? 'Created a track-per-category project.'
+      : 'Sent to the Reaper edit cursor.');
   }
   $$('[data-send]').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -407,7 +407,7 @@
   });
   $$('[data-download]').forEach(function (el) {
     el.addEventListener('click', function () {
-      showToast('免费版下载即将开放，请通过页脚“帮助与联系”获取安装包。');
+      showToast('Free download is coming soon. Use “Help and contact” in the footer to request the installer.');
     });
   });
 

@@ -1,6 +1,6 @@
 /* ============================================================
-   Hertz Sync Sound Design — 官方网站
-   深色音频工作台视觉 · 中文排版 · 响应式
+   Hertz Sync Sound Design — official website
+   Dark audio-workstation visual system · responsive layout
    ============================================================ */
 
 /* ---------- Tokens ---------- */
@@ -24,7 +24,7 @@
   --radius: 14px;
   --radius-sm: 10px;
   --maxw: 1200px;
-  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
