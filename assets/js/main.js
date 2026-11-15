@@ -405,11 +405,6 @@
   $$('[data-toast]').forEach(function (el) {
     el.addEventListener('click', function () { showToast(el.getAttribute('data-toast')); });
   });
-  $$('[data-download]').forEach(function (el) {
-    el.addEventListener('click', function () {
-      showToast('Free download is coming soon. Use “Help and contact” in the footer to request the installer.');
-    });
-  });
 
   /* ---------- Reveal on scroll ---------- */
   var revealEls = $$('[data-reveal]');
