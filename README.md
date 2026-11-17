@@ -4,7 +4,7 @@
 
 `https://rc0900989-rgb.github.io/hzsdofficial/`
 
-Official landing page for **Hertz Sync Sound Design**, a sound effects library manager for Windows — a 100% offline, neural audio asset manager built for sound designers.
+Official landing page for **Hertz Sync Sound Design**, a sound effects library manager for Windows, macOS and Linux — a 100% offline, neural audio asset manager built for sound designers.
 
 ## What's inside
 
@@ -27,6 +27,6 @@ Then visit <http://localhost:8000>.
 
 ## Downloads
 
-Downloads for Hertz Sync Sound Design, a sound effects library manager for Windows.
+Downloads for Hertz Sync Sound Design, a sound effects library manager for Windows, macOS and Linux.
 
 Get the latest installer from [Releases](https://github.com/rc0900989-rgb/hzsdofficial/releases/latest).
