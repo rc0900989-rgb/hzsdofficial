@@ -4,13 +4,13 @@
 
 `https://rc0900989-rgb.github.io/hzsdofficial/`
 
-Official landing page for **Hertz Sync Sound Design**, a sound effects library manager for Windows, macOS and Linux — a 100% offline, neural audio asset manager built for sound designers.
+Official landing page for **Hertz Sync Sound Design**, a sound effects library manager for Windows and macOS — a 100% offline, neural audio asset manager built for sound designers.
 
 ## What's inside
 
-- `index.html` — the complete single-page site: hero, sound search, UCS review, metadata and delivery, Reaper handoff, other tools, Free vs Pro, download
+- `index.html` — the complete single-page site: hero, sound search, UCS review, metadata, delivery, Reaper handoff, other tools, Free vs Pro, download
 - `assets/css/main.css` — dark studio design system and responsive layout
-- `assets/js/main.js` — interactive app demo, workspace tabs, simulated playback, UCS review, metadata actions and Reaper handoff
+- `assets/js/main.js` — interactive app demo, workspace tabs, simulated playback, UCS review, metadata actions, delivery and Reaper handoff
 - `assets/img/favicon.svg` — site icon
 
 The site is hosted with GitHub Pages from the `main` branch root. Every push to `main` rebuilds and redeploys automatically.
@@ -27,6 +27,6 @@ Then visit <http://localhost:8000>.
 
 ## Downloads
 
-Downloads for Hertz Sync Sound Design, a sound effects library manager for Windows, macOS and Linux.
+Downloads for Hertz Sync Sound Design, a sound effects library manager for Windows and macOS.
 
 Get the latest installer from [Releases](https://github.com/rc0900989-rgb/hzsdofficial/releases/latest).

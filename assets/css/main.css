@@ -1170,6 +1170,40 @@ h3 { font-size: 1.12rem; line-height: 1.4; letter-spacing: -0.015em; font-weight
   padding: 3px 7px;
 }
 
+/* --- Delivery demo --- */
+.deliver-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.24);
+  font-size: 0.6rem;
+  color: var(--muted);
+}
+.deliver-stats b { color: #e8e8ef; font-weight: 600; font-size: 0.66rem; }
+.deliver-manifest {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  color: #b9b9c6;
+}
+.deliver-manifest .icon { width: 0.75rem; height: 0.75rem; color: var(--amber); }
+.deliver-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.deliver-actions small { font-size: 0.55rem; color: var(--muted-2); line-height: 1.5; }
+
 /* --- Reaper demo --- */
 .reaper-cursor { font-size: 0.55rem; color: var(--muted-2); }
 .reaper-ruler {

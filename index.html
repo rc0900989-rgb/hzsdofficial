@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hertz Sync Sound Design — Local Sound Library Manager</title>
-  <meta name="description" content="Hertz Sync Sound Design helps you search, audition and organize your sound libraries, so assets move smoothly from your drive into your projects.">
+  <meta name="description" content="Hertz Sync Sound Design helps you search, audition and organize your sound libraries — then name, tag and deliver clean packs with a manifest and an undo.">
   <meta name="theme-color" content="#07070a">
   <meta property="og:title" content="Hertz Sync Sound Design — Local Sound Library Manager">
-  <meta property="og:description" content="Find the sound you need, and stay focused on creating. Search, audition and organize your library, then send sounds to Reaper.">
+  <meta property="og:description" content="Find the sound you need, then hand over a clean pack: search, audition and organize your library, write the UCS metadata into the WAV, and deliver with a manifest and an undo.">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg?v=1.0.1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +44,8 @@
       <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16l-6.2 7.4V19l-3.6 1.6v-7.2z"/></symbol>
       <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></symbol>
       <symbol id="i-file" viewBox="0 0 24 24"><path d="M13.5 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"/><path d="M13.5 3v5.5H19"/><path d="M9 13h6M9 16.5h4"/></symbol>
+      <symbol id="i-package" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></symbol>
+      <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a6.5 6.5 0 0 1 0 13H10"/></symbol>
       <symbol id="i-send" viewBox="0 0 24 24"><path d="m4 11.6 16-7.2-6.6 16-2.4-6.6z"/><path d="M11 13.8 20 4.4"/></symbol>
       <symbol id="i-tag" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h5.9a2 2 0 0 1 1.4.6l6.6 6.6a2 2 0 0 1 0 2.8l-5.4 5.4a2 2 0 0 1-2.8 0L4.6 12.8a2 2 0 0 1-.6-1.4z"/><circle cx="8.4" cy="8.4" r="1.4"/></symbol>
       <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v4.5h-4.5"/></symbol>
@@ -72,7 +74,8 @@
       <nav class="primary-nav" aria-label="Main navigation">
         <a href="#find">Find sounds</a>
         <a href="#ucs">UCS</a>
-        <a href="#metadata">Metadata &amp; delivery</a>
+        <a href="#metadata">Metadata</a>
+        <a href="#deliver">Delivery</a>
         <a href="#reaper">Reaper</a>
         <a href="#plans">Free &amp; Pro</a>
       </nav>
@@ -97,7 +100,8 @@
       <nav aria-label="Mobile navigation">
         <a href="#find">Find sounds</a>
         <a href="#ucs">UCS</a>
-        <a href="#metadata">Metadata &amp; delivery</a>
+        <a href="#metadata">Metadata</a>
+        <a href="#deliver">Delivery</a>
         <a href="#reaper">Reaper</a>
         <a href="#plans">Free &amp; Pro</a>
       </nav>
@@ -184,6 +188,11 @@
                 <button class="app-nav" data-view="send" type="button">
                   <svg class="icon"><use href="#i-send"/></svg>
                   <span>Send to Reaper</span>
+                </button>
+                <button class="app-nav" data-view="deliver" type="button">
+                  <svg class="icon"><use href="#i-package"/></svg>
+                  <span>Deliver</span>
+                  <em class="pill-count">Pro</em>
                 </button>
               </div>
               <div class="app-side-group app-side-tools">
@@ -422,6 +431,41 @@
 
                 <p class="send-note mono">Target: Reaper · Edit cursor 00:12.480</p>
               </section>
+
+              <!-- Deliver -->
+              <section class="app-view" data-panel="deliver" aria-label="Deliver a pack">
+                <div class="app-view-head">
+                  <div>
+                    <h2>Deliver <span class="chip chip-amber">312 files</span></h2>
+                    <p>A folder of its own, named and tagged, with a manifest and an undo.</p>
+                  </div>
+                  <button class="btn btn-ghost btn-sm" type="button" data-toast="Undo removes exactly what the run created; files you added stay.">
+                    <svg class="icon"><use href="#i-undo"/></svg> Undo
+                  </button>
+                </div>
+
+                <div class="deliver-compare">
+                  <div class="deliver-col">
+                    <span>Before</span>
+                    <code>rain_roof_heavy_03.wav</code>
+                    <small>48 kHz · WAV</small>
+                  </div>
+                  <span class="deliver-arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+                  <div class="deliver-col is-after">
+                    <span>Delivery</span>
+                    <code>AMBWeather_Rain_Roof_Heavy_03.wav</code>
+                    <small>96 kHz · -23 LUFS</small>
+                  </div>
+                </div>
+
+                <div class="deliver-stats">
+                  <span><b>312</b> delivered</span>
+                  <span><b>310</b> tagged</span>
+                  <span class="deliver-manifest"><svg class="icon"><use href="#i-file"/></svg> delivery-manifest.csv</span>
+                </div>
+
+                <p class="panel-note">Every delivered WAV gets BWF and iXML metadata with the UCS fields; the manifest lists what actually happened, file by file. Two files had no UCS category and went out without metadata.</p>
+              </section>
             </div>
           </div>
 
@@ -603,15 +647,15 @@
     <section class="section section-feature" id="metadata">
       <div class="container feature-split">
         <div class="feature-copy" data-reveal>
-          <span class="eyebrow">Core feature 03 · Metadata and delivery</span>
-          <h2>From library cleanup<br class="br-desktop"> to delivery.</h2>
+          <span class="eyebrow">Core feature 03 · Metadata</span>
+          <h2>Fix the metadata,<br class="br-desktop"> once per file.</h2>
           <p>
-            Edit WAV metadata and manage information through CSV. When it is time to deliver, batch-rename and adjust loudness, sample rate and format.
+            Edit WAV metadata and manage the whole library through CSV — category, description, sample rate, bit depth and loudness in one place. Every write is undoable from Metadata history.
           </p>
           <div class="feature-tags">
             <span><svg class="icon"><use href="#i-file"/></svg> WAV metadata</span>
             <span><svg class="icon"><use href="#i-grid"/></svg> CSV batch management</span>
-            <span><svg class="icon"><use href="#i-sliders"/></svg> Pre-delivery processing</span>
+            <span><svg class="icon"><use href="#i-refresh"/></svg> Undoable writes</span>
           </div>
         </div>
 
@@ -631,6 +675,40 @@
               <div class="meta-cell"><span>Format</span><strong>WAV</strong></div>
             </div>
 
+            <div class="batch-chips">
+              <span>WAV metadata</span><span>CSV list</span><span>Metadata history</span>
+            </div>
+
+            <p class="panel-note">Write to one file or a whole CSV batch. Undo a write from Metadata history without touching the audio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 DELIVERY ============ -->
+    <section class="section section-feature section-alt" id="deliver">
+      <div class="container feature-split feature-split-reverse">
+        <div class="feature-copy" data-reveal>
+          <span class="eyebrow">Core feature 04 · Delivery</span>
+          <h2>Name it, tag it,<br class="br-desktop"> hand it over.</h2>
+          <p>
+            Copy the chosen sounds into a folder of their own under proper UCS names, with the metadata written into each WAV — BWF bext and iXML — and a manifest beside the delivery. Undo removes exactly what the run created, file by file; the delivery is a copy, so your originals stay as they are.
+          </p>
+          <div class="feature-tags">
+            <span><svg class="icon"><use href="#i-tag"/></svg> UCS names</span>
+            <span><svg class="icon"><use href="#i-file"/></svg> Metadata in the WAV</span>
+            <span><svg class="icon"><use href="#i-grid"/></svg> Delivery manifest</span>
+            <span><svg class="icon"><use href="#i-undo"/></svg> One-click undo</span>
+          </div>
+        </div>
+
+        <div class="feature-visual" data-reveal style="--delay:.08s">
+          <div class="panel deliver-demo">
+            <div class="panel-head">
+              <span class="panel-title"><svg class="icon"><use href="#i-package"/></svg> Delivery · March pack</span>
+              <span class="chip chip-amber">312 files</span>
+            </div>
+
             <div class="deliver-compare">
               <div class="deliver-col">
                 <span>Before</span>
@@ -647,19 +725,30 @@
               </div>
             </div>
 
-            <div class="batch-chips">
-              <span>Batch rename</span><span>Loudness</span><span>Sample rate</span><span>Format</span><span>CSV list</span>
+            <div class="deliver-stats">
+              <span><b>312</b> delivered</span>
+              <span><b>310</b> tagged</span>
+              <span class="deliver-manifest"><svg class="icon"><use href="#i-file"/></svg> delivery-manifest.csv</span>
             </div>
+
+            <div class="deliver-actions">
+              <button class="btn btn-ghost btn-sm" type="button" data-toast="Undo removes exactly what the run created; files you added stay.">
+                <svg class="icon"><use href="#i-undo"/></svg> Undo this delivery
+              </button>
+              <small>Your originals are not changed — the delivery is the copy.</small>
+            </div>
+
+            <p class="panel-note">In place is the Pro option: rename the library files themselves as one undoable batch. A 2,000-file pack takes about half a minute.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 04 REAPER ============ -->
-    <section class="section section-feature section-alt" id="reaper">
-      <div class="container feature-split feature-split-reverse">
+    <!-- ============ 05 REAPER ============ -->
+    <section class="section section-feature" id="reaper">
+      <div class="container feature-split">
         <div class="feature-copy" data-reveal>
-          <span class="eyebrow">Core feature 04 · Reaper handoff</span>
+          <span class="eyebrow">Core feature 05 · Reaper handoff</span>
           <h2>Find a sound.<br class="br-desktop"> Drop it into the project.</h2>
           <p>
             Send selected sounds or waveform segments to the Reaper edit cursor, or create a new project with tracks split by category.
@@ -782,6 +871,7 @@
             <ul class="plan-list">
               <li><svg class="icon"><use href="#i-check"/></svg> Audio processing and file export</li>
               <li><svg class="icon"><use href="#i-check"/></svg> Batch processing and delivery</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> In-place delivery</li>
               <li><svg class="icon"><use href="#i-check"/></svg> Metadata writing and segment export</li>
               <li><svg class="icon"><use href="#i-check"/></svg> Reaper workflow</li>
               <li><svg class="icon"><use href="#i-check"/></svg> 3 computers at a time</li>
